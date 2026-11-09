@@ -28,10 +28,17 @@ export interface UIStrings {
     page: string;
   };
   home: {
+    subtitle: string;
+    intro: string;
+    purpose: string;
     socialLinks: string;
     featured: string;
     recentPosts: string;
     allPosts: string;
+    specialties: string[];
+    titleStart: string;
+    titleEnd: string;
+    description: string;
   };
   footer: {
     copyright: string;
@@ -54,6 +61,10 @@ export interface UIStrings {
     searchDesc: string;
   };
   a11y: {
+    languageSwitcher: string;
+    spanish: string;
+    english: string;
+    rssFeed: string;
     skipToContent: string;
     /** Optional until v8, so older locale files still type-check. */
     skipTableOfContents?: string;

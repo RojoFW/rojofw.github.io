@@ -1,0 +1,71 @@
+
+---
+import { getRelativeLocaleUrl } from "astro:i18n";
+import { useTranslations } from "@/i18n";
+import { stripBase, stripLocale } from "@/utils/withBase";
+import config from "@/config";
+
+const locale = Astro.currentLocale ?? config.site.lang;
+const t = useTranslations(locale);
+
+const path =
+  stripLocale(
+    stripBase(Astro.url.pathname),
+    locale
+  ).replace(/\/+$/, "") || "/";
+
+// Mantener la lógica original de rutas bilingües.
+const hasCounterpart =
+  ["/", "/posts", "/tags", "/about", "/archives", "/search"].includes(path) ||
+  /^\/posts\/\d+$/.test(path) ||
+  /^\/tags\/[^/]+(?:\/\d+)?$/.test(path);
+
+// Idioma al que vamos a cambiar.
+const targetLocale = locale === "es" ? "en" : "es";
+
+// Conservar la página actual cuando exista
+// su equivalente en el otro idioma.
+const targetUrl = getRelativeLocaleUrl(
+  targetLocale,
+  hasCounterpart ? path.slice(1) : ""
+);
+
+const label = locale === "es" ? "ES" : "EN";
+
+const accessibleLabel =
+  targetLocale === "en"
+    ? t.a11y.english
+    : t.a11y.spanish;
+---
+
+<a
+  href={targetUrl}
+  lang={targetLocale}
+  hreflang={targetLocale}
+  aria-label={accessibleLabel}
+  title={accessibleLabel}
+  class="
+    focus-outline
+    border-border
+    bg-muted
+    text-accent
+    hover:bg-accent
+    hover:text-background
+    flex
+    size-9
+    shrink-0
+    items-center
+    justify-center
+    rounded-md
+    border
+    text-xs
+    font-semibold
+    transition-colors
+    duration-200
+    sm:size-10
+    lg:size-9
+  "
+>
+  {label}
+</a>
+

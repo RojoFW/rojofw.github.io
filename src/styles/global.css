@@ -27,8 +27,9 @@
 }
 
 @utility app-layout {
-  @apply max-w-app mx-auto w-full px-4;
+  @apply mx-auto w-full max-w-5xl px-4 sm:px-6 lg:px-8;
 }
+
 
 @utility active-nav {
   @apply underline decoration-wavy decoration-2 underline-offset-8;

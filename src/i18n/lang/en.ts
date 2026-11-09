@@ -29,10 +29,28 @@ export default {
     page: "Page",
   },
   home: {
+    specialties: [
+      "Cybersecurity Researcher",
+      "Penetration Testing",
+      "Reverse Engineering",
+    ],
+
+    titleStart: "Research. Exploitation.",
+    titleEnd: "Knowledge.",
+
+    description:
+      "Vulnerability analysis, offensive security and security tooling. A space to document research, understand technologies and share technical knowledge.",
+
+    subtitle: "Cybersecurity research and offensive security.",
+    intro:
+      "Welcome to my cybersecurity research space. Here I share technical vulnerability analyses, research into web technologies, pentesting techniques, and security tool development.",
+    purpose:
+      "My goal is to document research, understand how technologies work, and share knowledge with the information security community.",
+
     socialLinks: "Social Links",
-    featured: "Featured",
-    recentPosts: "Recent Posts",
-    allPosts: "All Posts",
+    featured: "Featured research",
+    recentPosts: "Recent research",
+    allPosts: "All research",
   },
   footer: {
     copyright: "Copyright",
@@ -55,6 +73,10 @@ export default {
     searchDesc: "Search any article ...",
   },
   a11y: {
+    languageSwitcher: "Language",
+    spanish: "Spanish",
+    english: "English",
+    rssFeed: "Subscribe to RSS",
     skipToContent: "Skip to content",
     skipTableOfContents: "Skip table of contents",
     openMenu: "Open menu",

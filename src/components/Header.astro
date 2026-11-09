@@ -1,39 +1,52 @@
+
 ---
 import { getRelativeLocaleUrl } from "astro:i18n";
-import IconUnderline from "@/assets/icons/IconUnderline.svg";
+
 import IconMenuDeep from "@/assets/icons/IconMenuDeep.svg";
 import IconArchive from "@/assets/icons/IconArchive.svg";
 import IconSunHigh from "@/assets/icons/IconSunHigh.svg";
 import IconSearch from "@/assets/icons/IconSearch.svg";
 import IconMoon from "@/assets/icons/IconMoon.svg";
 import IconX from "@/assets/icons/IconX.svg";
+
 import LinkButton from "./LinkButton.astro";
+import LanguageSwitcher from "./LanguageSwitcher.astro";
+
 import { stripBase, stripLocale } from "@/utils/withBase";
 import { useTranslations } from "@/i18n";
 import config from "@/config";
 
 const { site, features } = config;
 
-const locale = Astro.currentLocale ?? config.site.lang;
+const locale = Astro.currentLocale ?? site.lang;
 const t = useTranslations(locale);
 
-// Strip the base prefix so isActive comparisons work regardless of deploy subdirectory.
-// e.g. with base "/blog": "/blog/posts/slug" → "/posts/slug"
+// Normalizar la ruta actual.
 const relativePath = stripBase(Astro.url.pathname);
+
 const pathWithoutTrailingSlash =
   relativePath.endsWith("/") && relativePath !== "/"
     ? relativePath.slice(0, -1)
     : relativePath;
 
-const currentPath = stripLocale(pathWithoutTrailingSlash, locale);
+const currentPath = stripLocale(
+  pathWithoutTrailingSlash,
+  locale
+);
 
+// Determinar el enlace activo.
 const isActive = (path: string) => {
-  const currentPathArray = currentPath.split("/").filter(p => p.trim());
-  const pathArray = path.split("/").filter(p => p.trim());
-  return currentPath === path || currentPathArray[0] === pathArray[0];
+  const current = currentPath.split("/").filter(Boolean);
+  const expected = path.split("/").filter(Boolean);
+
+  return (
+    currentPath === path ||
+    (expected.length > 0 && current[0] === expected[0])
+  );
 };
 ---
 
+<!-- ACCESIBILIDAD -->
 <a
   id="skip-to-content"
   href="#main-content"
@@ -42,156 +55,531 @@ const isActive = (path: string) => {
   {t.a11y.skipToContent}
 </a>
 
-<header
-  class="app-layout flex flex-col items-center justify-between sm:flex-row"
->
+<!-- HEADER -->
+<header class="app-layout">
   <div
-    class="border-border bg-background relative flex w-full items-baseline justify-between border-b py-4 sm:items-center sm:py-6"
+    class="border-border grid grid-cols-[minmax(0,1fr)_auto] items-center border-b py-3 sm:py-5"
   >
+
+    <!-- ================================= -->
+    <!-- NOMBRE DEL BLOG -->
+    <!-- ================================= -->
+
     <a
       href={getRelativeLocaleUrl(locale, "")}
-      class="absolute py-1 text-xl leading-8 font-semibold whitespace-nowrap sm:static sm:my-auto sm:text-2xl sm:leading-none"
+      class="col-start-1 row-start-1 min-w-0 truncate py-1 text-base leading-7 font-semibold sm:text-2xl lg:col-span-2"
+      title={site.title}
     >
       {site.title}
     </a>
-    <nav
-      id="nav-menu"
-      class="flex w-full flex-col items-center sm:ms-2 sm:flex-row sm:justify-end sm:space-x-4 sm:py-0"
+
+    <!-- ================================= -->
+    <!-- CONTROLES DE LA DERECHA -->
+    <!-- ================================= -->
+
+    <div
+      class="col-start-2 row-start-1 flex shrink-0 items-center justify-end gap-0.5 sm:gap-2 lg:row-start-2"
     >
+
+      <!-- BUSCADOR -->
+      {
+        features.search !== false && (
+          <LinkButton
+            href={getRelativeLocaleUrl(locale, "search")}
+            class:list={[
+              "focus-outline tech-icon-link no-underline hover:no-underline relative flex size-9 shrink-0 items-center justify-center rounded-md transition-colors duration-200 hover:text-accent sm:size-10 lg:size-9",
+              { "tech-nav-active": isActive("/search") },
+            ]}
+            title={t.nav.search}
+            aria-label={t.nav.search}
+            aria-current={isActive("/search") ? "location" : undefined}
+          >
+            <IconSearch class="size-5 sm:size-6" />
+
+            <span class="sr-only">
+              {t.nav.search}
+            </span>
+          </LinkButton>
+        )
+      }
+
+      <!-- SELECTOR DE TEMA -->
+      {
+        features.lightAndDarkMode && (
+          <button
+            id="theme-btn"
+            type="button"
+            class="focus-outline hover:[&>svg]:stroke-accent relative flex size-9 shrink-0 items-center justify-center rounded-md sm:size-10 lg:size-9"
+            title={t.a11y.toggleTheme}
+            aria-label="auto"
+            aria-live="polite"
+          >
+            <IconMoon
+              class="absolute top-1/2 left-1/2 size-5 -translate-x-1/2 -translate-y-1/2 scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90 sm:size-6"
+            />
+
+            <IconSunHigh
+              class="absolute top-1/2 left-1/2 size-5 -translate-x-1/2 -translate-y-1/2 scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0 sm:size-6"
+            />
+          </button>
+        )
+      }
+
+      <!-- SELECTOR DE IDIOMA: ESCRITORIO -->
+      <div class="hidden lg:flex lg:items-center">
+        <LanguageSwitcher />
+      </div>
+
+      <!-- HAMBURGUESA / X: MÓVIL -->
       <button
         id="menu-btn"
-        class="focus-outline self-end p-2 sm:hidden"
+        type="button"
+        class="focus-outline relative flex size-9 shrink-0 items-center justify-center rounded-md transition-colors hover:text-accent lg:hidden"
         aria-label={t.a11y.openMenu}
         aria-expanded="false"
-        aria-controls="menu-items"
+        aria-controls="menu-panel"
         data-label-open={t.a11y.openMenu}
         data-label-close={t.a11y.closeMenu}
       >
-        <IconX id="close-icon" class="hidden" />
-        <IconMenuDeep id="menu-icon" />
+        <IconMenuDeep
+          id="menu-icon"
+          class="size-5"
+        />
+
+        <IconX
+          id="close-icon"
+          class="hidden size-5"
+        />
       </button>
-      <ul
-        id="menu-items"
-        class="[&>li>a]:hover:text-accent mt-4 hidden w-44 grid-cols-2 place-content-center gap-2 sm:mt-0 sm:flex sm:w-auto sm:gap-x-5 sm:gap-y-0 sm:[&>li]:h-8 [&>li>a]:block [&>li>a]:px-4 [&>li>a]:py-3 [&>li>a]:text-center [&>li>a]:font-medium sm:[&>li>a]:px-2 sm:[&>li>a]:py-1"
+    </div>
+
+    <!-- ================================= -->
+    <!-- NAVEGACIÓN IZQUIERDA -->
+    <!-- ================================= -->
+
+    <nav
+      id="nav-menu"
+      aria-label={locale === "es"
+        ? "Navegación principal"
+        : "Main navigation"}
+      class="col-span-2 col-start-1 row-start-2 min-w-0 w-full lg:col-span-1 lg:mt-3"
+    >
+
+      <!-- CONTENEDOR ANIMADO -->
+      <div
+        id="menu-panel"
+        class="menu-panel"
       >
-        <li class="col-span-2">
-          <a
-            href={getRelativeLocaleUrl(locale, "posts")}
-            class:list={{ "active-nav": isActive("/posts") }}
+        <div class="menu-inner">
+
+          <ul
+            id="menu-items"
+            class="grid grid-cols-1 gap-1 pt-4 lg:flex lg:flex-wrap lg:items-center lg:justify-start lg:gap-x-3 lg:gap-y-2 lg:pt-0"
           >
-            {t.nav.posts}
-          </a>
-        </li>
-        <li class="col-span-2">
-          <a
-            href={getRelativeLocaleUrl(locale, "tags")}
-            class:list={{ "active-nav": isActive("/tags") }}
-          >
-            {t.nav.tags}
-          </a>
-        </li>
-        <li class="col-span-2">
-          <a
-            href={getRelativeLocaleUrl(locale, "about")}
-            class:list={{ "active-nav": isActive("/about") }}
-          >
-            {t.nav.about}
-          </a>
-        </li>
-        {
-          features.showArchives && (
-            <li class="col-span-2">
-              <LinkButton
-                href={getRelativeLocaleUrl(locale, "archives")}
+
+            <!-- INVESTIGACIONES -->
+            <li>
+              <a
+                href={getRelativeLocaleUrl(locale, "posts")}
                 class:list={[
-                  "focus-outline flex size-full justify-center p-3 sm:relative sm:size-8 sm:p-0",
-                  { "active-nav": isActive("/archives") },
+                  "tech-nav-link relative block no-underline hover:no-underline rounded-md px-3 py-3 font-medium whitespace-nowrap transition-colors duration-200 hover:text-accent lg:px-2 lg:py-1",
+                  { "tech-nav-active": isActive("/posts") },
                 ]}
-                title={t.nav.archives}
-                aria-label={t.nav.archives}
+                aria-current={isActive("/posts") ? "location" : undefined}
               >
-                <IconArchive class="hidden sm:absolute sm:top-1/2 sm:left-1/2 sm:block sm:size-6 sm:-translate-x-1/2 sm:-translate-y-1/2" />
-                <span class="sm:sr-only">{t.nav.archives}</span>
-                {isActive("/archives") && (
-                  <IconUnderline
-                    aria-hidden="true"
-                    class="scale-125 max-sm:hidden sm:absolute sm:bottom-0 sm:w-6"
-                  />
-                )}
-              </LinkButton>
+                <span class="tech-nav-label">{t.nav.posts}</span>
+              </a>
             </li>
-          )
-        }
-        {
-          features.search !== false && (
-            <li class="col-span-1 flex items-center justify-center">
-              <LinkButton
-                href={getRelativeLocaleUrl(locale, "search")}
-                class:list={["focus-outline relative size-8"]}
-                title={t.nav.search}
-                aria-label={t.nav.search}
+
+            <!-- ETIQUETAS -->
+            <li>
+              <a
+                href={getRelativeLocaleUrl(locale, "tags")}
+                class:list={[
+                  "tech-nav-link relative block no-underline hover:no-underline rounded-md px-3 py-3 font-medium whitespace-nowrap transition-colors duration-200 hover:text-accent lg:px-2 lg:py-1",
+                  { "tech-nav-active": isActive("/tags") },
+                ]}
+                aria-current={isActive("/tags") ? "location" : undefined}
               >
-                <IconSearch class="absolute top-1/2 left-1/2 size-6 -translate-x-1/2 -translate-y-1/2" />
-                <span class="sr-only">{t.nav.search}</span>
-                {isActive("/search") && (
-                  <IconUnderline
-                    aria-hidden="true"
-                    class="absolute bottom-0 w-6 scale-125 max-sm:inset-s-2"
-                  />
-                )}
-              </LinkButton>
+                <span class="tech-nav-label">{t.nav.tags}</span>
+              </a>
             </li>
-          )
-        }
-        {
-          features.lightAndDarkMode && (
-            <li class="col-span-1 flex items-center justify-center">
-              <button
-                id="theme-btn"
-                class="focus-outline hover:[&>svg]:stroke-accent relative size-12 p-4 sm:size-8"
-                title={t.a11y.toggleTheme}
-                aria-label="auto"
-                aria-live="polite"
+
+            <!-- SOBRE MÍ -->
+            <li>
+              <a
+                href={getRelativeLocaleUrl(locale, "about")}
+                class:list={[
+                  "tech-nav-link relative block no-underline hover:no-underline rounded-md px-3 py-3 font-medium whitespace-nowrap transition-colors duration-200 hover:text-accent lg:px-2 lg:py-1",
+                  { "tech-nav-active": isActive("/about") },
+                ]}
+                aria-current={isActive("/about") ? "location" : undefined}
               >
-                <IconMoon class="absolute top-[50%] left-[50%] translate-[-50%] scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90" />
-                <IconSunHigh class="absolute top-[50%] left-[50%] translate-[-50%] scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0" />
-              </button>
+                <span class="tech-nav-label">{t.nav.about}</span>
+              </a>
             </li>
-          )
-        }
-      </ul>
+
+            <!-- ARCHIVO -->
+            {
+              features.showArchives && (
+                <li>
+                  <LinkButton
+                    href={getRelativeLocaleUrl(locale, "archives")}
+                    class:list={[
+                      "focus-outline tech-nav-link tech-nav-icon-link no-underline hover:no-underline flex min-h-11 items-center rounded-md px-3 font-medium transition-colors duration-200 hover:text-accent lg:relative lg:size-8 lg:min-h-0 lg:justify-center lg:p-0",
+                      { "tech-nav-active": isActive("/archives") },
+                    ]}
+                    title={t.nav.archives}
+                    aria-label={t.nav.archives}
+                    aria-current={isActive("/archives") ? "location" : undefined}
+                  >
+
+                    <IconArchive
+                      class="hidden lg:block lg:size-6"
+                    />
+
+                    <span class="tech-nav-label lg:sr-only">
+                      {t.nav.archives}
+                    </span>
+                  </LinkButton>
+                </li>
+              )
+            }
+
+            <!-- IDIOMA: SOLO MENÚ MÓVIL -->
+            <li
+              class="border-border mt-2 flex items-center justify-between border-t px-3 pt-4 lg:hidden"
+            >
+              <span class="text-muted-foreground text-sm">
+                {locale === "es" ? "Idioma" : "Language"}
+              </span>
+
+              <LanguageSwitcher />
+            </li>
+
+          </ul>
+        </div>
+      </div>
     </nav>
   </div>
 </header>
 
+<!-- ================================= -->
+<!-- ANIMACIONES -->
+<!-- ================================= -->
+
+<style>
+  /* Los enlaces principales nunca usan el subrayado ondulado heredado. */
+  :global(#nav-menu .tech-nav-link),
+  :global(#nav-menu .tech-nav-link:hover),
+  :global(#nav-menu .tech-nav-link:focus-visible) {
+    text-decoration: none !important;
+  }
+
+  /* El indicador queda exactamente bajo el texto (sin incluir padding). */
+  :global(#nav-menu .tech-nav-label) {
+    position: relative;
+    display: inline-block;
+  }
+
+  :global(#nav-menu .tech-nav-label)::after {
+    content: "";
+    position: absolute;
+    inset-inline: 0;
+    bottom: -0.34rem;
+    height: 2px;
+    background-color: var(--accent);
+    border-radius: 2px;
+    transform: scaleX(0);
+    transform-origin: left center;
+    opacity: 0;
+    transition: transform 210ms ease, opacity 210ms ease;
+  }
+
+  /* El indicador permanece visible en la sección activa. */
+  :global(#nav-menu a.tech-nav-link:hover .tech-nav-label)::after,
+  :global(#nav-menu a.tech-nav-link:focus-visible .tech-nav-label)::after,
+  :global(#nav-menu a.tech-nav-active .tech-nav-label)::after {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+
+  /* La página activa se identifica por el color, sin una barra permanente. */
+  :global(#nav-menu a.tech-nav-active),
+  :global(header a.tech-icon-link.tech-nav-active) {
+    color: var(--accent);
+  }
+
+  /* Indicador compartido por los enlaces que se muestran como iconos. */
+  :global(header a.tech-icon-link)::after,
+  :global(#nav-menu a.tech-nav-icon-link)::after {
+    content: "";
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    bottom: 1px;
+    left: calc(50% - 2px);
+    background: var(--accent);
+    opacity: 0;
+    transform: scale(0);
+    transition: opacity 210ms ease, transform 210ms ease;
+  }
+
+  :global(header a.tech-icon-link:hover)::after,
+  :global(header a.tech-icon-link:focus-visible)::after,
+  :global(header a.tech-icon-link.tech-nav-active)::after {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  @media (min-width: 1024px) {
+    :global(#nav-menu a.tech-nav-icon-link:hover)::after,
+    :global(#nav-menu a.tech-nav-icon-link:focus-visible)::after,
+    :global(#nav-menu a.tech-nav-icon-link.tech-nav-active)::after {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    :global(#nav-menu .tech-nav-label)::after,
+    :global(header a.tech-icon-link)::after,
+    :global(#nav-menu a.tech-nav-icon-link)::after {
+      transition: none;
+    }
+  }
+
+  .menu-panel {
+    display: grid;
+    grid-template-rows: 0fr;
+    opacity: 0;
+    visibility: hidden;
+
+    transition:
+      grid-template-rows 300ms ease,
+      opacity 250ms ease,
+      visibility 0s linear 300ms;
+  }
+
+  .menu-inner {
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  /* Menú abierto */
+  .menu-panel.is-open {
+    grid-template-rows: 1fr;
+    opacity: 1;
+    visibility: visible;
+
+    transition:
+      grid-template-rows 300ms ease,
+      opacity 250ms ease,
+      visibility 0s;
+  }
+
+  /* Animación individual de los enlaces */
+  @media (max-width: 1023px) {
+    #menu-items > li {
+      opacity: 0;
+      transform: translateY(-8px);
+
+      transition:
+        opacity 220ms ease,
+        transform 220ms ease;
+    }
+
+    .menu-panel.is-open #menu-items > li {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .menu-panel.is-open #menu-items > li:nth-child(1) {
+      transition-delay: 40ms;
+    }
+
+    .menu-panel.is-open #menu-items > li:nth-child(2) {
+      transition-delay: 70ms;
+    }
+
+    .menu-panel.is-open #menu-items > li:nth-child(3) {
+      transition-delay: 100ms;
+    }
+
+    .menu-panel.is-open #menu-items > li:nth-child(4) {
+      transition-delay: 130ms;
+    }
+
+    .menu-panel.is-open #menu-items > li:nth-child(5) {
+      transition-delay: 160ms;
+    }
+  }
+
+  /* Escritorio: navegación siempre visible */
+  @media (min-width: 1024px) {
+    .menu-panel,
+    .menu-panel.is-open {
+      grid-template-rows: 1fr;
+      opacity: 1;
+      visibility: visible;
+      transition: none;
+    }
+
+    .menu-inner {
+      overflow: visible;
+    }
+  }
+
+  /* Accesibilidad */
+  @media (prefers-reduced-motion: reduce) {
+    .menu-panel,
+    .menu-panel.is-open,
+    #menu-items > li {
+      transition: none !important;
+      transform: none !important;
+    }
+  }
+</style>
+
+<!-- ================================= -->
+<!-- JAVASCRIPT -->
+<!-- ================================= -->
+
 <script>
   function toggleNav() {
-    const menuBtn = document.querySelector<HTMLButtonElement>("#menu-btn");
-    const menuItems = document.querySelector("#menu-items");
-    const menuIcon = document.querySelector("#menu-icon");
-    const closeIcon = document.querySelector("#close-icon");
+    const menuBtn =
+      document.querySelector<HTMLButtonElement>("#menu-btn");
 
-    if (!menuBtn || !menuItems || !menuIcon || !closeIcon) return;
+    const menuPanel =
+      document.querySelector<HTMLElement>("#menu-panel");
 
-    const openLabel = menuBtn.dataset.labelOpen ?? "Open menu";
-    const closeLabel = menuBtn.dataset.labelClose ?? "Close menu";
+    const menuItems =
+      document.querySelector<HTMLElement>("#menu-items");
 
+    const menuIcon =
+      document.querySelector("#menu-icon");
+
+    const closeIcon =
+      document.querySelector("#close-icon");
+
+    if (
+      !menuBtn ||
+      !menuPanel ||
+      !menuItems ||
+      !menuIcon ||
+      !closeIcon
+    ) {
+      return;
+    }
+
+    // Evitar inicialización duplicada.
+    if (menuBtn.dataset.initialized === "true") {
+      return;
+    }
+
+    menuBtn.dataset.initialized = "true";
+
+    const openLabel =
+      menuBtn.dataset.labelOpen ?? "Open menu";
+
+    const closeLabel =
+      menuBtn.dataset.labelClose ?? "Close menu";
+
+    const mediaQuery = window.matchMedia(
+      "(min-width: 1024px)"
+    );
+
+    // Accesibilidad del menú cerrado.
+    const syncAccessibility = () => {
+      const isOpen =
+        menuBtn.getAttribute("aria-expanded") === "true";
+
+      menuPanel.inert =
+        !mediaQuery.matches && !isOpen;
+    };
+
+    // Abrir o cerrar menú.
+    const setMenuOpen = (open: boolean) => {
+      menuBtn.setAttribute(
+        "aria-expanded",
+        String(open)
+      );
+
+      menuBtn.setAttribute(
+        "aria-label",
+        open ? closeLabel : openLabel
+      );
+
+      // Activar animación CSS.
+      menuPanel.classList.toggle("is-open", open);
+
+      // Alternar iconos.
+      menuIcon.classList.toggle("hidden", open);
+      closeIcon.classList.toggle("hidden", !open);
+
+      // Actualizar accesibilidad.
+      syncAccessibility();
+    };
+
+    // Estado inicial.
+    setMenuOpen(false);
+
+    // Evento del botón.
     menuBtn.addEventListener("click", () => {
-      const openMenu = menuBtn.getAttribute("aria-expanded") === "true";
+      const isOpen =
+        menuBtn.getAttribute("aria-expanded") === "true";
 
-      menuBtn.setAttribute("aria-expanded", openMenu ? "false" : "true");
-      menuBtn.setAttribute("aria-label", openMenu ? openLabel : closeLabel);
+      setMenuOpen(!isOpen);
+    });
 
-      menuItems.classList.toggle("hidden");
-      menuItems.classList.toggle("grid");
-      menuIcon.classList.toggle("hidden");
-      closeIcon.classList.toggle("hidden");
+    // Cerrar al seleccionar un enlace.
+    menuItems.addEventListener("click", event => {
+      if (
+        !mediaQuery.matches &&
+        event.target instanceof Element &&
+        event.target.closest("a")
+      ) {
+        setMenuOpen(false);
+      }
+    });
+
+    // Sincronizar al cambiar de resolución.
+    mediaQuery.addEventListener(
+      "change",
+      syncAccessibility
+    );
+
+    // Cerrar mediante Escape.
+    menuBtn.addEventListener("keydown", event => {
+      if (event.key === "Escape") {
+        setMenuOpen(false);
+      }
+    });
+
+    document.addEventListener("keydown", event => {
+      if (
+        event.key === "Escape" &&
+        menuBtn.getAttribute("aria-expanded") === "true"
+      ) {
+        setMenuOpen(false);
+        menuBtn.focus();
+      }
     });
   }
 
   function handleSkipToContent() {
-    const skipLink = document.getElementById("skip-to-content");
+    const skipLink =
+      document.getElementById("skip-to-content");
+
     if (!skipLink) return;
+
+    if (skipLink.dataset.initialized === "true") {
+      return;
+    }
+
+    skipLink.dataset.initialized = "true";
+
     skipLink.addEventListener("click", e => {
       if (
         e.defaultPrevented ||
@@ -199,28 +587,39 @@ const isActive = (path: string) => {
         e.ctrlKey ||
         e.shiftKey ||
         e.button !== 0
-      )
+      ) {
         return;
+      }
+
       e.preventDefault();
-      const target = document.getElementById("main-content");
+
+      const target =
+        document.getElementById("main-content");
+
       if (target) {
         target.setAttribute("tabindex", "-1");
+
         target.addEventListener(
           "blur",
           () => target.removeAttribute("tabindex"),
-          {
-            once: true,
-          }
+          { once: true }
         );
+
         target.focus();
-        target.scrollIntoView({ behavior: "smooth" });
+
+        target.scrollIntoView({
+          behavior: "smooth",
+        });
       }
     });
   }
 
   toggleNav();
-  document.addEventListener("astro:after-swap", toggleNav);
-
   handleSkipToContent();
-  document.addEventListener("astro:after-swap", handleSkipToContent);
+
+  // Navegación Astro View Transitions.
+  document.addEventListener("astro:after-swap", () => {
+    toggleNav();
+    handleSkipToContent();
+  });
 </script>

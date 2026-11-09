@@ -15,14 +15,20 @@ for (const [path, mod] of Object.entries(modules)) {
 type ResolvedStrings = { [K in keyof UIStrings]: Required<UIStrings[K]> };
 
 /**
- * Returns UI strings for the given locale, falling back to English. Labels that
+ * Returns UI strings for the given locale, falling back to Spanish. Labels that
  * are optional until v8 fall back one by one.
  */
-export function useTranslations(locale: string = "en"): ResolvedStrings {
-  const t = translations[locale] ?? translations["en"];
+export function useTranslations(locale: string = "es"): ResolvedStrings {
+  const t = translations[locale] ?? translations["es"];
   return {
     ...t,
-    post: { tableOfContents: "Table of contents", ...t.post },
-    a11y: { skipTableOfContents: "Skip table of contents", ...t.a11y },
+    post: {
+      tableOfContents: translations["es"].post.tableOfContents!,
+      ...t.post,
+    },
+    a11y: {
+      skipTableOfContents: translations["es"].a11y.skipTableOfContents!,
+      ...t.a11y,
+    },
   };
 }

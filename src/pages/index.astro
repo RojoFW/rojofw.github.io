@@ -1,138 +1,535 @@
+
 ---
 import { getCollection } from "astro:content";
 import { getRelativeLocaleUrl } from "astro:i18n";
-import IconRss from "@/assets/icons/IconRss.svg";
+
 import IconArrowRight from "@/assets/icons/IconArrowRight.svg";
+
 import Layout from "@/layouts/Layout.astro";
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
-import Socials from "@/components/Socials.astro";
 import Card from "@/components/Card.astro";
 import LinkButton from "@/components/LinkButton.astro";
+
 import { getSortedPosts } from "@/utils/getSortedPosts";
 import { useTranslations } from "@/i18n";
 import config from "@/config";
 
-const { socials, posts: postsConfig } = config;
+// ========================================
+// IDIOMA Y TRADUCCIONES
+// ========================================
 
 const locale = Astro.currentLocale ?? config.site.lang;
 const t = useTranslations(locale);
 
+// ========================================
+// PUBLICACIONES
+// ========================================
+
+// Obtener las publicaciones de Astro Content Collections.
 const posts = await getCollection("posts");
-const sortedPosts = getSortedPosts(posts);
-const featuredPosts = sortedPosts.filter(({ data }) => data.featured);
-const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
+
+// Ordenar y seleccionar las cinco más recientes.
+// También incluye las publicaciones marcadas como featured.
+const recentPosts = getSortedPosts(posts).slice(0, 5);
+
+// Ruta de inicio correspondiente al idioma.
 const homePath = getRelativeLocaleUrl(locale, "");
 ---
 
 <Layout>
   <Header />
+
   <main
     id="main-content"
     data-layout="index"
     data-home-path={homePath}
     class="app-layout my-1"
   >
-    <section id="hero" class="border-border border-b pt-8 pb-6">
-      <h1 class="my-4 inline-block text-4xl font-bold sm:my-8 sm:text-5xl">
-        Mingalaba
-      </h1>{" "}
-      <a
-        target="_blank"
-        href={`${import.meta.env.BASE_URL.replace(/\/?$/, "/")}rss.xml`}
-        class="inline-block"
-        aria-label="RSS Feed"
-        title="RSS Feed"
-      >
-        <IconRss
-          width={20}
-          height={20}
-          class="stroke-accent scale-125 stroke-3 rtl:-rotate-90"
-        />
-        <span class="sr-only">RSS Feed</span>
-      </a>
+    <!-- ======================================== -->
+    <!-- PRESENTACIÓN DEL BLOG -->
+    <!-- ======================================== -->
 
-      <p>
-        AstroPaper is a minimal, responsive, accessible and SEO-friendly Astro
-        blog theme. This theme follows best practices and provides accessibility
-        out of the box. Light and dark mode are supported by default. Moreover,
-        additional color schemes can also be configured.
-      </p>
-      <p class="mt-2">
-        Read the blog posts or check{" "}
-        <LinkButton
-          class="hover:text-accent underline decoration-dashed underline-offset-4"
-          href="https://github.com/rojofw/rojofw.github.io/blob/dev/README.md"
+    <section
+      id="hero"
+      class="border-border border-b pt-6 pb-8 sm:pt-8 sm:pb-10"
+    >
+      <!-- TÍTULO Y TERMINAL -->
+      <div class="hero-reveal hero-reveal-1 mt-2">
+
+        <!-- TÍTULO PRINCIPAL -->
+        <h1
+          class="max-w-5xl text-3xl font-bold leading-[1.15] tracking-tight sm:text-4xl lg:text-5xl"
         >
-          README
-        </LinkButton>{" "}
-        for more info.
+          {t.home.titleStart}{" "}
+
+          <span class="hero-glow text-accent">
+            {t.home.titleEnd}
+          </span>
+        </h1>
+
+        <!-- TERMINAL CON EFECTO TYPING -->
+        <div
+          class="terminal-line text-accent mt-5 text-sm font-semibold tracking-normal uppercase sm:text-base sm:tracking-wide"
+        >
+          <span
+            class="terminal-prompt"
+            aria-hidden="true"
+          >&gt;&nbsp;</span>
+
+          <span
+            id="hero-specialty"
+            class="hero-specialty"
+            data-specialties={JSON.stringify(t.home.specialties)}
+            aria-label={t.home.specialties.join(", ")}
+          >{t.home.specialties[0]}</span>
+
+          <span
+            class="terminal-cursor"
+            aria-hidden="true"
+          ></span>
+        </div>
+      </div>
+
+      <!-- DESCRIPCIÓN -->
+      <p
+        class="hero-reveal hero-reveal-2 text-muted-foreground mt-6 max-w-3xl text-base leading-[1.85] sm:text-lg"
+      >
+        {t.home.description}
       </p>
-      {
-        socials.length > 0 && (
-          <div class="mt-4 flex max-sm:flex-col sm:items-center">
-            <div class="me-2 mb-1 whitespace-nowrap sm:mb-0">
-              {t.home.socialLinks}:
-            </div>
-            <Socials />
-          </div>
-        )
-      }
     </section>
 
-    {
-      featuredPosts.length > 0 && (
-        <section
-          id="featured"
-          class:list={[
-            "pt-12 pb-6",
-            { "border-border border-b": recentPosts.length > 0 },
-          ]}
-        >
-          <h2 class="text-2xl font-semibold tracking-wide">
-            {t.home.featured}
-          </h2>
-          <ul>
-            {featuredPosts.map(data => (
-              <Card variant="h3" {...data} />
-            ))}
-          </ul>
-        </section>
-      )
-    }
+    <!-- ======================================== -->
+    <!-- CINCO INVESTIGACIONES MÁS RECIENTES -->
+    <!-- ======================================== -->
 
     {
       recentPosts.length > 0 && (
-        <section id="recent-posts" class="pt-12 pb-6">
-          <h2 class="text-2xl font-semibold tracking-wide">
+        <section
+          id="recent-posts"
+          class="home-section-reveal pt-8 pb-7 sm:pt-10"
+        >
+          <h2
+            class="text-2xl font-semibold tracking-wide"
+          >
             {t.home.recentPosts}
           </h2>
+
+          <!-- PUBLICACIONES -->
           <ul>
-            {recentPosts.slice(0, postsConfig.perIndex).map(data => (
-              <Card variant="h3" {...data} />
+            {recentPosts.map(post => (
+              <Card
+                variant="h3"
+                {...post}
+              />
             ))}
           </ul>
         </section>
       )
     }
 
-    <div class="my-8 text-center">
-      <LinkButton href={getRelativeLocaleUrl(locale, "posts")}>
+    <!-- ======================================== -->
+    <!-- ENLACE A TODAS LAS INVESTIGACIONES -->
+    <!-- ======================================== -->
+
+    <div
+      class="my-6 text-center"
+    >
+      <LinkButton
+        href={getRelativeLocaleUrl(locale, "posts")}
+      >
         {t.home.allPosts}
-        <IconArrowRight class="inline-block rtl:-rotate-180" />
+
+        <IconArrowRight
+          class="inline-block rtl:-rotate-180"
+        />
       </LinkButton>
     </div>
+
   </main>
+
   <Footer />
 </Layout>
 
-<script>
-  document.addEventListener("astro:page-load", () => {
-    const indexLayout = (document.querySelector("#main-content") as HTMLElement)
-      ?.dataset;
-    const baseRoot = import.meta.env.BASE_URL.replace(/\/?$/, "/");
-    if (indexLayout?.layout) {
-      sessionStorage.setItem("backUrl", indexLayout.homePath ?? baseRoot);
+<!-- ======================================== -->
+<!-- ESTILOS Y ANIMACIONES -->
+<!-- ======================================== -->
+
+<style>
+  /*
+   * 1. APARICIÓN PROGRESIVA
+   *
+   * Solo se anima la opacidad para evitar
+   * saltos de posición en el contenido.
+   */
+
+  @keyframes home-fade-in {
+    from {
+      opacity: 0;
     }
-  });
+
+    to {
+      opacity: 1;
+    }
+  }
+
+  .hero-reveal {
+    animation: home-fade-in 560ms ease-out both;
+  }
+
+  .hero-reveal-1 {
+    animation-delay: 40ms;
+  }
+
+  .hero-reveal-2 {
+    animation-delay: 140ms;
+  }
+
+  /*
+   * 2. APARICIÓN DE INVESTIGACIONES
+   */
+
+  .home-section-reveal {
+    animation: home-fade-in 650ms ease-out 380ms both;
+  }
+
+  /*
+   * 3. TERMINAL
+   *
+   * El cursor sigue el texto durante
+   * la escritura y el borrado.
+   */
+
+  .terminal-line {
+    display: flex;
+    align-items: center;
+
+    min-height: 1.7em;
+    max-width: 100%;
+
+    line-height: 1.6;
+    white-space: nowrap;
+  }
+
+  .terminal-prompt {
+    flex-shrink: 0;
+    user-select: none;
+  }
+
+  .hero-specialty {
+    display: inline-block;
+    min-width: 0;
+  }
+
+  /*
+   * 4. CURSOR PARPADEANTE
+   */
+
+  .terminal-cursor {
+    display: inline-block;
+
+    width: 2px;
+    height: 1.1em;
+
+    margin-left: 4px;
+    flex-shrink: 0;
+
+    background-color: var(--accent);
+
+    animation: terminal-blink 850ms steps(1) infinite;
+  }
+
+  @keyframes terminal-blink {
+    0%,
+    49% {
+      opacity: 1;
+    }
+
+    50%,
+    100% {
+      opacity: 0;
+    }
+  }
+
+  /*
+   * 5. RESPLANDOR DEL TÍTULO
+   *
+   * El efecto se aplica a la clase
+   * hero-glow sin desenfocar las letras.
+   */
+
+  @keyframes knowledge-glow {
+    0%,
+    100% {
+      text-shadow: 0 0 0 transparent;
+    }
+
+    50% {
+      text-shadow:
+        0 0 8px
+          color-mix(
+            in srgb,
+            var(--accent) 40%,
+            transparent
+          ),
+        0 0 20px
+          color-mix(
+            in srgb,
+            var(--accent) 15%,
+            transparent
+          );
+    }
+  }
+
+  .hero-glow {
+    animation: knowledge-glow 5s ease-in-out infinite;
+  }
+
+  /*
+   * 6. ACCESIBILIDAD
+   */
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-reveal,
+    .home-section-reveal,
+    .hero-glow,
+    .terminal-cursor {
+      animation: none !important;
+    }
+  }
+</style>
+
+<!-- ======================================== -->
+<!-- JAVASCRIPT: EFECTO TYPING -->
+<!-- ======================================== -->
+
+<script>
+  /*
+   * Efecto:
+   *
+   * Mostrar texto
+   *     ↓
+   * Pausar
+   *     ↓
+   * Borrar carácter por carácter
+   *     ↓
+   * Escribir siguiente especialidad
+   *     ↓
+   * Repetir
+   *
+   * Compatible con Astro ClientRouter.
+   */
+
+  let typingTimer: number | undefined;
+
+  // ======================================
+  // LIMPIAR TEMPORIZADORES
+  // ======================================
+
+  function stopTyping() {
+    if (typingTimer !== undefined) {
+      window.clearTimeout(typingTimer);
+      typingTimer = undefined;
+    }
+  }
+
+  // ======================================
+  // INICIALIZAR PORTADA
+  // ======================================
+
+  function initializeHome() {
+    stopTyping();
+
+    const main = document.querySelector<HTMLElement>(
+      '#main-content[data-layout="index"]'
+    );
+
+    if (!main) return;
+
+    // ------------------------------------
+    // Mantener navegación de AstroPaper
+    // ------------------------------------
+
+    const baseRoot = import.meta.env.BASE_URL.replace(
+      /\/?$/,
+      "/"
+    );
+
+    sessionStorage.setItem(
+      "backUrl",
+      main.dataset.homePath ?? baseRoot
+    );
+
+    // ------------------------------------
+    // Obtener etiqueta de terminal
+    // ------------------------------------
+
+    const label = main.querySelector<HTMLElement>(
+      "#hero-specialty"
+    );
+
+    if (!label) return;
+
+    // ------------------------------------
+    // Obtener traducciones
+    // ------------------------------------
+
+    let specialties: string[];
+
+    try {
+      const parsed: unknown = JSON.parse(
+        label.dataset.specialties ?? "[]"
+      );
+
+      if (
+        !Array.isArray(parsed) ||
+        !parsed.every(
+          item => typeof item === "string"
+        )
+      ) {
+        return;
+      }
+
+      specialties = parsed.filter(Boolean);
+    } catch {
+      return;
+    }
+
+    if (specialties.length === 0) return;
+
+    // ------------------------------------
+    // Accesibilidad
+    // ------------------------------------
+
+    const reducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    );
+
+    label.textContent = specialties[0];
+
+    if (
+      reducedMotion.matches ||
+      specialties.length < 2
+    ) {
+      return;
+    }
+
+    // ------------------------------------
+    // Configuración de velocidad
+    // ------------------------------------
+
+    const TYPE_SPEED = 85;
+    const DELETE_SPEED = 40;
+
+    const PAUSE_AFTER_TYPING = 1600;
+    const PAUSE_AFTER_DELETING = 80;
+
+    // ------------------------------------
+    // Estado inicial
+    // ------------------------------------
+
+    let wordIndex = 0;
+
+    const characters = specialties.map(
+      text => Array.from(text)
+    );
+
+    let charIndex = characters[0].length;
+    let deleting = true;
+
+    // ------------------------------------
+    // Animación
+    // ------------------------------------
+
+    function tick() {
+      if (!label?.isConnected) {
+        stopTyping();
+        return;
+      }
+
+      // Evitar trabajo cuando la pestaña
+      // no está visible.
+      if (document.hidden) {
+        typingTimer = window.setTimeout(
+          tick,
+          500
+        );
+
+        return;
+      }
+
+      const current = characters[wordIndex];
+
+      let delay: number;
+
+      if (deleting) {
+        // BORRAR
+        charIndex = Math.max(
+          0,
+          charIndex - 1
+        );
+
+        label.textContent = current
+          .slice(0, charIndex)
+          .join("");
+
+        delay = DELETE_SPEED;
+
+        if (charIndex === 0) {
+          deleting = false;
+
+          wordIndex =
+            (wordIndex + 1) % characters.length;
+
+          delay = PAUSE_AFTER_DELETING;
+        }
+      } else {
+        // ESCRIBIR
+        const next = characters[wordIndex];
+
+        charIndex = Math.min(
+          next.length,
+          charIndex + 1
+        );
+
+        label.textContent = next
+          .slice(0, charIndex)
+          .join("");
+
+        delay = TYPE_SPEED;
+
+        if (charIndex === next.length) {
+          deleting = true;
+
+          delay = PAUSE_AFTER_TYPING;
+        }
+      }
+
+      typingTimer = window.setTimeout(
+        tick,
+        delay
+      );
+    }
+
+    // Primera pausa con el texto completo.
+    typingTimer = window.setTimeout(
+      tick,
+      PAUSE_AFTER_TYPING
+    );
+  }
+
+  // ======================================
+  // ASTRO CLIENT ROUTER
+  // ======================================
+
+  document.addEventListener(
+    "astro:page-load",
+    initializeHome
+  );
+
+  document.addEventListener(
+    "astro:before-swap",
+    stopTyping
+  );
 </script>
+
