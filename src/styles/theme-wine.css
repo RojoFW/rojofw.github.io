@@ -1,0 +1,21 @@
+/* Previous palette for comparison: warm white, wine red, and deep plum. */
+:root,
+[data-theme="light"] {
+  --background: #faf8f6;
+  --foreground: #251d20;
+  --accent: #9e1b32;
+  --accent-foreground: #ffffff;
+  --muted: #f1e8e8;
+  --muted-foreground: #665a60;
+  --border: #e9dde0;
+}
+
+[data-theme="dark"] {
+  --background: #17141a;
+  --foreground: #f5f1ed;
+  --accent: #ff7a82;
+  --accent-foreground: #17141a;
+  --muted: #252028;
+  --muted-foreground: #b9aeb3;
+  --border: #4c3a43;
+}

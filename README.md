@@ -29,6 +29,6 @@ pnpm dev
 
 Abre <http://localhost:4321/>. Para comprobar la compilación, ejecuta `pnpm build` y `pnpm preview`.
 
-Las entradas están en `src/content/posts/`. La URL, el título y los enlaces del sitio se configuran en `astro-paper.config.ts`. El contenido de ejemplo de AstroPaper sigue incluido y se puede sustituir por las entradas del blog.
+Las entradas están en `src/content/posts/`. La entrada `como-escribir-en-este-blog.md` es una guía que puedes copiar para crear las siguientes. La URL, el título y los enlaces del sitio se configuran en `astro-paper.config.ts`.
 
 AstroPaper conserva su licencia MIT en [LICENSE](LICENSE).
