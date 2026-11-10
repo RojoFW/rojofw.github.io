@@ -38,6 +38,7 @@ const t = useTranslations(locale);
       transition:persist
       data-backurl={backUrl}
       data-bundle-path={pagefindBundlePath}
+      data-placeholder={t.nav.searchPlaceholder}
     >
     </div>
   </Main>
@@ -79,6 +80,7 @@ const t = useTranslations(locale);
         bundlePath,
         showImages: false,
         showSubResults: true,
+        translations: { placeholder: pageFindSearch.dataset.placeholder },
         processTerm: function (term: string) {
           params.set("q", term); // Update the `q` parameter in the URL
           history.replaceState(history.state, "", "?" + params.toString()); // Push the new URL without reloading
@@ -124,6 +126,7 @@ const t = useTranslations(locale);
 
 <style is:global>
   #pagefind-search {
+    --pagefind-ui-scale: 0.85;
     --pagefind-ui-font: var(--font-app);
     --pagefind-ui-text: var(--foreground);
     --pagefind-ui-background: var(--background);
@@ -135,17 +138,39 @@ const t = useTranslations(locale);
     --pagefind-ui-image-border-radius: 8px;
     --pagefind-ui-image-box-ratio: 3 / 2;
 
-    form::before {
-      background-color: var(--foreground);
+    .pagefind-ui__form::before {
+      content: ">>>";
+      width: auto;
+      height: auto;
+      top: 50%;
+      left: 0.9rem;
+      transform: translateY(-50%);
+      background: none;
+      color: var(--accent);
+      opacity: 1;
+      mask: none;
+      -webkit-mask: none;
+      font: 700 0.95rem var(--font-app), ui-monospace, monospace;
     }
 
-    input {
+    .pagefind-ui__search-input {
       font-weight: 400;
-      border: 1px solid var(--border);
+      font-family: var(--font-app), ui-monospace, monospace;
+      border: 0;
+      border-bottom: 1px solid var(--border);
+      border-radius: 0;
+      padding-left: 4.2rem;
+      caret-color: var(--accent);
     }
 
-    input:focus-visible {
-      outline: 1px solid var(--accent);
+    .pagefind-ui__search-input:focus-visible {
+      outline: none;
+      border-bottom: 2px solid var(--accent);
+    }
+
+    .pagefind-ui__search-input::placeholder {
+      opacity: 0.6;
+      color: var(--muted-foreground);
     }
 
     .pagefind-ui__result-title a {

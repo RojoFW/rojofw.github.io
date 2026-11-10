@@ -13,6 +13,7 @@ export interface UIStrings {
     contact: string;
     archives: string;
     search: string;
+    searchPlaceholder: string;
   };
   post: {
     publishedAt: string;

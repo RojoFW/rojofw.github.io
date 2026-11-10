@@ -80,13 +80,10 @@ const isActive = (path: string) => {
             ]}
             title={t.nav.search}
             aria-label={t.nav.search}
-            aria-current={isActive("/search") ? "location" : undefined}
+            aria-current={isActive("/search") ? "page" : undefined}
           >
             <IconSearch class="size-5 sm:size-6" />
-
-            <span class="sr-only">
-              {t.nav.search}
-            </span>
+            <span class="sr-only">{t.nav.search}</span>
           </LinkButton>
         )
       }
@@ -164,6 +161,20 @@ const isActive = (path: string) => {
             id="menu-items"
             class="grid grid-cols-1 gap-1 pt-4 lg:flex lg:flex-wrap lg:items-center lg:justify-start lg:gap-x-3 lg:gap-y-2 lg:pt-0"
           >
+
+            <!-- INICIO -->
+            <li>
+              <a
+                href={getRelativeLocaleUrl(locale, "")}
+                class:list={[
+                  "tech-nav-link relative block no-underline hover:no-underline rounded-md px-3 py-3 font-medium whitespace-nowrap transition-colors duration-200 hover:text-accent lg:px-2 lg:py-1",
+                  { "tech-nav-active": currentPath === "/" },
+                ]}
+                aria-current={currentPath === "/" ? "page" : undefined}
+              >
+                <span class="tech-nav-label">{t.nav.home}</span>
+              </a>
+            </li>
 
             <!-- INVESTIGACIONES -->
             <li>
@@ -299,7 +310,6 @@ const isActive = (path: string) => {
   }
 
   /* Indicador compartido por los enlaces que se muestran como iconos. */
-  :global(header a.tech-icon-link)::after,
   :global(#nav-menu a.tech-nav-icon-link)::after {
     content: "";
     position: absolute;
@@ -314,13 +324,6 @@ const isActive = (path: string) => {
     transition: opacity 210ms ease, transform 210ms ease;
   }
 
-  :global(header a.tech-icon-link:hover)::after,
-  :global(header a.tech-icon-link:focus-visible)::after,
-  :global(header a.tech-icon-link.tech-nav-active)::after {
-    opacity: 1;
-    transform: scale(1);
-  }
-
   @media (min-width: 1024px) {
     :global(#nav-menu a.tech-nav-icon-link:hover)::after,
     :global(#nav-menu a.tech-nav-icon-link:focus-visible)::after,
@@ -332,7 +335,6 @@ const isActive = (path: string) => {
 
   @media (prefers-reduced-motion: reduce) {
     :global(#nav-menu .tech-nav-label)::after,
-    :global(header a.tech-icon-link)::after,
     :global(#nav-menu a.tech-nav-icon-link)::after {
       transition: none;
     }

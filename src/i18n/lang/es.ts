@@ -15,6 +15,7 @@ export default {
     contact: "Contacto",
     archives: "Archivo",
     search: "Buscar",
+    searchPlaceholder: "Escribe para buscar",
   },
 
   post: {

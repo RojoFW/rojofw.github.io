@@ -15,6 +15,7 @@ export default {
     contact: "Contact",
     archives: "Archives",
     search: "Search",
+    searchPlaceholder: "Type to search",
   },
   post: {
     publishedAt: "Published at",
