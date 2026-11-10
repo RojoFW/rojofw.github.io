@@ -4,10 +4,8 @@ export default {
   sidebar: {
     label: "RojoFW profile",
     role: "Cybersecurity Analyst",
-    typing: ["Cybersecurity Engineering", "eJPT", "Pentesting and reverse engineering"],
+    education: "Cybersecurity Engineering / EJPT",
     socialLinks: "Social and contact links",
-    hide: "Hide profile",
-    show: "Show profile",
   },
   nav: {
     home: "Home",

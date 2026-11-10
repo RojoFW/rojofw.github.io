@@ -127,9 +127,7 @@ const rssHref = getAssetPath("rss.xml");
 <style>
   :global(body) { --profile-sidebar-width: 11.5rem; }
   .layout-shell { display: flex; min-height: 100svh; flex-direction: column; }
-  @media (min-width: 48rem) {
-    .layout-shell { margin-inline-start: var(--profile-sidebar-width); transition: margin-inline-start 220ms ease; }
-    :global(body.profile-sidebar-hidden) .layout-shell { margin-inline-start: 1.5rem; }
+  @media (min-width: 48rem) and (min-height: 32rem) {
+    .layout-shell { margin-inline-start: var(--profile-sidebar-width); }
   }
-  @media (prefers-reduced-motion: reduce) { .layout-shell { transition: none; } }
 </style>
