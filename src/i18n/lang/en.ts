@@ -5,7 +5,7 @@ export default {
     home: "Home",
     posts: "Posts",
     tags: "Tags",
-    about: "About",
+    contact: "Contact",
     archives: "Archives",
     search: "Search",
   },
@@ -57,6 +57,27 @@ export default {
     allRightsReserved: "All rights reserved.",
   },
   pages: {
+    contact: {
+      title: "Contact",
+      description:
+        "Professional profile and contact details for Roberto Lázaro Ramos Pereiro.",
+      profileTitle: "Profile",
+      profile:
+        "I am a cybersecurity specialist and a fourth-year Cybersecurity Engineering student at UCI. My work covers web and infrastructure penetration testing, malware analysis, and reverse engineering. I also build security tools and automate workflows with Python and Bash.",
+      experienceTitle: "Experience",
+      experience:
+        "I currently work on the security of KMCERO at Tecnomatica and manage network infrastructure at Doña Alicia SRL. Previously, I carried out independent web security assessments and bug bounty work. On this blog I document research, techniques, and tools for other security professionals.",
+      highlightsTitle: "Education and achievements",
+      highlights: [
+        "eJPT certification and ongoing Cybersecurity Engineering studies at UCI.",
+        "First place at Cyberdrill Cuba 2025 and regional MetaRed 2025.",
+        "Vice-captain of Onicoders-UciTeam and recipient of UCI scientific merit awards in my second and third years.",
+      ],
+      contactTitle: "Get in touch",
+      location: "Havana, Cuba",
+      phone: "Phone",
+      email: "Email",
+    },
     tagTitle: "Tag",
     tagDesc: "All the articles with the tag",
 

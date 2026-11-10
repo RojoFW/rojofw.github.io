@@ -5,7 +5,7 @@ export default {
     home: "Inicio",
     posts: "Investigaciones",
     tags: "Etiquetas",
-    about: "Sobre mí",
+    contact: "Contacto",
     archives: "Archivo",
     search: "Buscar",
   },
@@ -60,6 +60,27 @@ export default {
   },
 
   pages: {
+    contact: {
+      title: "Contacto",
+      description:
+        "Perfil profesional y formas de contactar con Roberto Lázaro Ramos Pereiro.",
+      profileTitle: "Perfil",
+      profile:
+        "Soy especialista en ciberseguridad y estudiante de cuarto año de Ingeniería en Ciberseguridad en la UCI. Trabajo en pruebas de penetración web e infraestructura, análisis de malware e ingeniería inversa. También desarrollo herramientas y automatizaciones con Python y Bash.",
+      experienceTitle: "Experiencia",
+      experience:
+        "Actualmente trabajo en la seguridad de KMCERO en Tecnomatica y administro infraestructura de red en Doña Alicia SRL. Antes realicé evaluaciones independientes de seguridad web y bug bounty. En este blog documento investigaciones, técnicas y herramientas que pueden ser útiles para otros profesionales.",
+      highlightsTitle: "Formación y logros",
+      highlights: [
+        "Certificación eJPT y formación en Ingeniería en Ciberseguridad (UCI), en curso.",
+        "Primer lugar en Cyberdrill Cuba 2025 y MetaRed regional 2025.",
+        "Vicecapitán de Onicoders-UciTeam y premio al mérito científico de la UCI en segundo y tercer año.",
+      ],
+      contactTitle: "Hablemos",
+      location: "La Habana, Cuba",
+      phone: "Teléfono",
+      email: "Correo electrónico",
+    },
     tagTitle: "Etiqueta",
     tagDesc: "Todas las investigaciones con la etiqueta",
 

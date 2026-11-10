@@ -16,7 +16,7 @@ const path =
 
 // Mantener la lógica original de rutas bilingües.
 const hasCounterpart =
-  ["/", "/posts", "/tags", "/about", "/archives", "/search"].includes(path) ||
+  ["/", "/posts", "/tags", "/contact", "/archives", "/search"].includes(path) ||
   /^\/posts\/\d+$/.test(path) ||
   /^\/tags\/[^/]+(?:\/\d+)?$/.test(path);
 

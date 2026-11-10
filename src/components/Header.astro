@@ -205,17 +205,17 @@ const isActive = (path: string) => {
               </a>
             </li>
 
-            <!-- SOBRE MÍ -->
+            <!-- CONTACTO -->
             <li>
               <a
-                href={getRelativeLocaleUrl(locale, "about")}
+                href={getRelativeLocaleUrl(locale, "contact")}
                 class:list={[
                   "tech-nav-link relative block no-underline hover:no-underline rounded-md px-3 py-3 font-medium whitespace-nowrap transition-colors duration-200 hover:text-accent lg:px-2 lg:py-1",
-                  { "tech-nav-active": isActive("/about") },
+                  { "tech-nav-active": isActive("/contact") },
                 ]}
-                aria-current={isActive("/about") ? "location" : undefined}
+                aria-current={isActive("/contact") ? "location" : undefined}
               >
-                <span class="tech-nav-label">{t.nav.about}</span>
+                <span class="tech-nav-label">{t.nav.contact}</span>
               </a>
             </li>
 

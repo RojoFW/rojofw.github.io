@@ -1,11 +1,13 @@
 ---
 import { getRelativeLocaleUrl } from "astro:i18n";
 import config from "@/config";
+import { useTranslations } from "@/i18n";
 
 type Props = { postCount: number };
 const { postCount } = Astro.props;
 const locale = Astro.currentLocale ?? config.site.lang;
 const isSpanish = locale === "es";
+const t = useTranslations(locale);
 const github = config.socials.find(link => link.name === "github");
 const avatar = github?.url.match(/^https:\/\/github\.com\/([^/]+)\/?$/)?.[1];
 const specialties = isSpanish
@@ -98,8 +100,7 @@ const specialties = isSpanish
           ))
         }
         <li>
-          <a href={getRelativeLocaleUrl(locale, "about")}
-            >{isSpanish ? "Sobre mí" : "About me"}</a>
+          <a href={getRelativeLocaleUrl(locale, "contact")}>{t.nav.contact}</a>
         </li>
       </ul>
     </nav>

@@ -3,7 +3,7 @@ export interface UIStrings {
     home: string;
     posts: string;
     tags: string;
-    about: string;
+    contact: string;
     archives: string;
     search: string;
   };
@@ -45,6 +45,20 @@ export interface UIStrings {
     allRightsReserved: string;
   };
   pages: {
+    contact: {
+      title: string;
+      description: string;
+      profileTitle: string;
+      profile: string;
+      experienceTitle: string;
+      experience: string;
+      highlightsTitle: string;
+      highlights: string[];
+      contactTitle: string;
+      location: string;
+      phone: string;
+      email: string;
+    };
     tagTitle: string;
     tagDesc: string;
 
