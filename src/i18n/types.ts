@@ -54,6 +54,7 @@ export interface UIStrings {
       experience: string;
       highlightsTitle: string;
       highlights: string[];
+      ctfTeam: string;
       contactTitle: string;
       location: string;
       phone: string;

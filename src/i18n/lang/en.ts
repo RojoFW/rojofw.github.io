@@ -73,6 +73,7 @@ export default {
         "First place at Cyberdrill Cuba 2025 and regional MetaRed 2025.",
         "Vice-captain of Onicoders-UciTeam and recipient of UCI scientific merit awards in my second and third years.",
       ],
+      ctfTeam: "View Onicoders-UciTeam and its results on CTFtime",
       contactTitle: "Get in touch",
       location: "Havana, Cuba",
       phone: "Phone",

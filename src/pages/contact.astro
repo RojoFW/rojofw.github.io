@@ -37,7 +37,10 @@ const socials = config.socials.filter(({ name }) => name !== "gmail");
 
       <section aria-labelledby="highlights-title">
         <h2 id="highlights-title">{contact.highlightsTitle}</h2>
-        <ul>{contact.highlights.map(item => <li>{item}</li>)}</ul>
+        <ul>
+          {contact.highlights.map(item => <li>{item}</li>)}
+          <li><a href="https://ctftime.org/team/307387/" target="_blank" rel="noopener noreferrer">{contact.ctfTeam}</a></li>
+        </ul>
       </section>
 
       <section aria-labelledby="contact-title" class="contact-details">

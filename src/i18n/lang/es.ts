@@ -76,6 +76,7 @@ export default {
         "Primer lugar en Cyberdrill Cuba 2025 y MetaRed regional 2025.",
         "Vicecapitán de Onicoders-UciTeam y premio al mérito científico de la UCI en segundo y tercer año.",
       ],
+      ctfTeam: "Ver el equipo Onicoders-UciTeam en CTFtime y sus resultados",
       contactTitle: "Hablemos",
       location: "La Habana, Cuba",
       phone: "Teléfono",
