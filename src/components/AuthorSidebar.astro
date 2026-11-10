@@ -78,6 +78,14 @@ const specialties = isSpanish
       <h2>{isSpanish ? "Áreas de trabajo" : "Areas of work"}</h2>
       <ul>{specialties.map(item => <li>{item}</li>)}</ul>
     </div>
+    <div class="author-section">
+      <h2>{t.pages.contact.highlightsTitle}</h2>
+      <ul>
+        <li>eJPT</li>
+        <li>{isSpanish ? "1.º en Cyberdrill Cuba 2025 y MetaRed regional 2025" : "1st place at Cyberdrill Cuba 2025 and regional MetaRed 2025"}</li>
+        <li><a href="https://ctftime.org/team/307387/" target="_blank" rel="noopener noreferrer">Onicoders-UciTeam · CTFtime</a></li>
+      </ul>
+    </div>
     <nav
       class="author-section"
       aria-label={isSpanish ? "Enlaces del autor" : "Author links"}

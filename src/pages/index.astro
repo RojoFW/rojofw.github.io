@@ -8,6 +8,7 @@ import IconArrowRight from "@/assets/icons/IconArrowRight.svg";
 import Layout from "@/layouts/Layout.astro";
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
+import AuthorSidebar from "@/components/AuthorSidebar.astro";
 import Card from "@/components/Card.astro";
 import LinkButton from "@/components/LinkButton.astro";
 
@@ -40,11 +41,12 @@ const homePath = getRelativeLocaleUrl(locale, "");
 <Layout>
   <Header />
 
+  <div class="home-layout app-layout">
   <main
     id="main-content"
     data-layout="index"
     data-home-path={homePath}
-    class="app-layout my-1"
+    class="my-1 min-w-0"
   >
     <!-- ======================================== -->
     <!-- PRESENTACIÓN DEL BLOG -->
@@ -147,6 +149,8 @@ const homePath = getRelativeLocaleUrl(locale, "");
     </div>
 
   </main>
+  <AuthorSidebar postCount={getSortedPosts(posts).length} />
+  </div>
 
   <Footer />
 </Layout>
@@ -156,6 +160,12 @@ const homePath = getRelativeLocaleUrl(locale, "");
 <!-- ======================================== -->
 
 <style>
+  .home-layout { display: grid; gap: 2rem; }
+  @media (min-width: 64rem) {
+    .home-layout { grid-template-columns: 13.5rem minmax(0, 1fr); gap: 2.5rem; margin-top: 2rem; }
+    .home-layout :global(.author-sidebar) { grid-column: 1; grid-row: 1; }
+    .home-layout main { grid-column: 2; grid-row: 1; }
+  }
   /*
    * 1. APARICIÓN PROGRESIVA
    *
