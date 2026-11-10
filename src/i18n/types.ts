@@ -2,6 +2,7 @@ export interface UIStrings {
   sidebar: {
     label: string;
     role: string;
+    summary: string;
     education: string;
     socialLinks: string;
   };

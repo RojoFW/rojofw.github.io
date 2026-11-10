@@ -4,6 +4,7 @@ export default {
   sidebar: {
     label: "Perfil de RojoFW",
     role: "Analista de Ciberseguridad",
+    summary: "Pentesting web, seguridad de infraestructura e ingeniería inversa.",
     education: "Ingeniería en Ciberseguridad / EJPT",
     socialLinks: "Redes y contacto",
   },

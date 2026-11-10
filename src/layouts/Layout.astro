@@ -116,8 +116,10 @@ const rssHref = getAssetPath("rss.xml");
   <body
     class="bg-background font-app text-foreground selection:bg-accent/75 selection:text-accent-foreground flex min-h-svh flex-col"
   >
-    <ProfileSidebar />
-    <div class="layout-shell"><slot /></div>
+    <div class="site-frame">
+      <ProfileSidebar />
+      <div class="layout-shell"><slot /></div>
+    </div>
     <script>
       import "@/scripts/theme";
     </script>
@@ -125,9 +127,9 @@ const rssHref = getAssetPath("rss.xml");
 </html>
 
 <style>
-  :global(body) { --profile-sidebar-width: 11.5rem; }
+  .site-frame { display: flex; min-height: 100svh; flex: 1; flex-direction: column; }
   .layout-shell { display: flex; min-height: 100svh; flex-direction: column; }
-  @media (min-width: 48rem) and (min-height: 32rem) {
-    .layout-shell { margin-inline-start: var(--profile-sidebar-width); }
+  @media (min-width: 56rem) and (min-height: 32rem) {
+    .site-frame { display: grid; grid-template-columns: clamp(13rem, 20vw, 16rem) minmax(0, 1fr); align-items: stretch; }
   }
 </style>
