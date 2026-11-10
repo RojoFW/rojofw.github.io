@@ -4,6 +4,7 @@ import { ClientRouter } from "astro:transitions";
 import { resolveDefaultOgImagePath } from "@/utils/resolveDefaultOgImagePath";
 import { getAssetPath } from "@/utils/withBase";
 import config from "@/config";
+import ProfileSidebar from "@/components/ProfileSidebar.astro";
 import "@/styles/global.css";
 
 type Props = {
@@ -115,9 +116,20 @@ const rssHref = getAssetPath("rss.xml");
   <body
     class="bg-background font-app text-foreground selection:bg-accent/75 selection:text-accent-foreground flex min-h-svh flex-col"
   >
-    <slot />
+    <ProfileSidebar />
+    <div class="layout-shell"><slot /></div>
     <script>
       import "@/scripts/theme";
     </script>
   </body>
 </html>
+
+<style>
+  :global(body) { --profile-sidebar-width: 11.5rem; }
+  .layout-shell { display: flex; min-height: 100svh; flex-direction: column; }
+  @media (min-width: 48rem) {
+    .layout-shell { margin-inline-start: var(--profile-sidebar-width); transition: margin-inline-start 220ms ease; }
+    :global(body.profile-sidebar-hidden) .layout-shell { margin-inline-start: 1.5rem; }
+  }
+  @media (prefers-reduced-motion: reduce) { .layout-shell { transition: none; } }
+</style>

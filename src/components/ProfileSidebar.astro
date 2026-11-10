@@ -1,0 +1,106 @@
+---
+import config from "@/config";
+import { useTranslations } from "@/i18n";
+
+const locale = Astro.currentLocale ?? config.site.lang;
+const t = useTranslations(locale).sidebar;
+const github = config.socials.find(({ name }) => name === "github");
+const username = github?.url.match(/^https:\/\/github\.com\/([^/]+)\/?$/)?.[1];
+const labels: Record<string, string> = { github: "GitHub", linkedin: "LinkedIn", telegram: "Telegram", gmail: "Email" };
+---
+
+<div class="profile-rail" data-profile-rail data-pagefind-ignore>
+  <aside id="profile-sidebar" class="profile-sidebar" aria-label={t.label}>
+    {username ? (
+      <img class="profile-avatar" src={`https://github.com/${username}.png?size=192`} alt={t.label} width="88" height="88" decoding="async" />
+    ) : (
+      <span class="profile-avatar profile-fallback" aria-hidden="true">R</span>
+    )}
+    <p class="profile-name">RojoFW</p>
+    <p class="profile-role">{t.role}</p>
+
+    <p class="profile-typing" aria-label={t.typing.join(", ")}>
+      <span class="typing-prompt" aria-hidden="true">&gt;</span>
+      <span data-profile-typing data-items={JSON.stringify(t.typing)} aria-hidden="true">{t.typing[0]}</span><span class="typing-cursor" aria-hidden="true"></span>
+    </p>
+
+    <nav aria-label={t.socialLinks} class="profile-socials">
+      {config.socials.map(({ name, url }) => (
+        <a href={url} target={url.startsWith("http") ? "_blank" : undefined} rel={url.startsWith("http") ? "noopener noreferrer" : undefined}>{labels[name] ?? name}</a>
+      ))}
+    </nav>
+  </aside>
+  <button type="button" class="profile-toggle" data-profile-toggle aria-controls="profile-sidebar" aria-expanded="true" aria-label={t.hide} data-show-label={t.show} data-hide-label={t.hide} title={t.hide}>
+    <span aria-hidden="true" data-profile-arrow>‹</span>
+  </button>
+</div>
+
+<style>
+  .profile-rail { display: none; }
+  @media (min-width: 48rem) {
+    .profile-rail { display: block; position: fixed; z-index: 20; inset-block: 0; inset-inline-start: 0; width: var(--profile-sidebar-width); transition: transform 220ms ease; }
+    :global(body.profile-sidebar-hidden) .profile-rail { transform: translateX(calc(-1 * var(--profile-sidebar-width) + 1.5rem)); }
+    .profile-sidebar { position: absolute; inset-block-start: 6.5rem; inset-inline: 1.25rem 2rem; max-height: calc(100dvh - 8rem); overflow-y: auto; padding-bottom: 1rem; background: transparent; }
+    .profile-avatar { display: block; width: 5.5rem; height: 5.5rem; border: 1px solid var(--color-border); border-radius: 50%; object-fit: cover; }
+    .profile-fallback { display: grid; place-items: center; color: var(--color-accent); font-size: 2.25rem; font-weight: 700; }
+    .profile-name { margin-top: 1rem; font-size: 1.15rem; font-weight: 700; }
+    .profile-role { margin-top: .25rem; color: var(--color-muted-foreground); font-size: .82rem; line-height: 1.5; }
+    .profile-typing { display: flex; align-items: baseline; min-height: 3.5rem; margin-top: 1.35rem; color: var(--color-accent); font-size: .78rem; line-height: 1.5; }
+    .typing-prompt { flex: none; margin-inline-end: .4rem; }
+    [data-profile-typing] { overflow-wrap: anywhere; }
+    .typing-cursor { width: 1px; height: 1em; margin-inline-start: 2px; background: currentColor; animation: blink 900ms steps(1) infinite; }
+    .profile-socials { display: grid; gap: .6rem; margin-top: 1.6rem; font-size: .85rem; }
+    .profile-socials a { width: fit-content; color: var(--color-muted-foreground); text-decoration: underline; text-decoration-color: var(--color-border); text-underline-offset: .25rem; }
+    .profile-socials a:hover { color: var(--color-accent); }
+    .profile-toggle { position: absolute; top: 6.5rem; inset-inline-end: 0; display: grid; place-items: center; width: 1.5rem; height: 3rem; border: 1px solid var(--color-border); border-inline-end: 0; border-radius: .35rem 0 0 .35rem; background: var(--color-background); color: var(--color-accent); font-size: 1.3rem; }
+    :global(body.profile-sidebar-hidden) .profile-toggle { border-inline-start: 0; border-inline-end: 1px solid var(--color-border); border-radius: 0 .35rem .35rem 0; }
+    @keyframes blink { 50% { opacity: 0; } }
+    @media (prefers-reduced-motion: reduce) { .profile-rail { transition: none; } .typing-cursor { animation: none; } }
+  }
+</style>
+
+<script>
+  let cleanup: (() => void) | undefined;
+  function initSidebar() {
+    cleanup?.();
+    const rail = document.querySelector<HTMLElement>("[data-profile-rail]");
+    const toggle = rail?.querySelector<HTMLButtonElement>("[data-profile-toggle]");
+    const arrow = rail?.querySelector<HTMLElement>("[data-profile-arrow]");
+    const typing = rail?.querySelector<HTMLElement>("[data-profile-typing]");
+    if (!rail || !toggle || !typing) return;
+    const items: string[] = JSON.parse(typing.dataset.items ?? "[]");
+    let pinned = localStorage.getItem("profileSidebarHidden") !== "true";
+    let open = pinned;
+    let timer = 0;
+    const render = () => {
+      document.body.classList.toggle("profile-sidebar-hidden", !open);
+      toggle.setAttribute("aria-expanded", String(open));
+      toggle.setAttribute("aria-label", open ? toggle.dataset.hideLabel! : toggle.dataset.showLabel!);
+      toggle.title = open ? toggle.dataset.hideLabel! : toggle.dataset.showLabel!;
+      if (arrow) arrow.textContent = open ? "‹" : "›";
+    };
+    const onToggle = () => { pinned = !pinned; open = pinned; localStorage.setItem("profileSidebarHidden", String(!pinned)); render(); };
+    const onEnter = () => { if (!pinned) { open = true; render(); } };
+    const onLeave = () => { if (!pinned) { open = false; render(); } };
+    toggle.addEventListener("click", onToggle);
+    rail.addEventListener("mouseenter", onEnter);
+    rail.addEventListener("mouseleave", onLeave);
+    render();
+
+    if (items.length > 1 && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      let index = 0, count = items[0].length, deleting = true;
+      const tick = () => {
+        const current = items[index];
+        count += deleting ? -1 : 1;
+        typing.textContent = current.slice(0, count);
+        if (count === 0) { index = (index + 1) % items.length; deleting = false; }
+        else if (count === items[index].length && !deleting) { deleting = true; timer = window.setTimeout(tick, 1600); return; }
+        timer = window.setTimeout(tick, deleting ? 45 : 75);
+      };
+      timer = window.setTimeout(tick, 1600);
+    }
+    cleanup = () => { clearTimeout(timer); toggle.removeEventListener("click", onToggle); rail.removeEventListener("mouseenter", onEnter); rail.removeEventListener("mouseleave", onLeave); };
+  }
+  document.addEventListener("astro:page-load", initSidebar);
+  document.addEventListener("astro:before-swap", () => cleanup?.());
+</script>

@@ -2,7 +2,6 @@
 ---
 import type { HTMLAttributes } from "astro/types";
 
-import Socials from "./Socials.astro";
 import IconRss from "@/assets/icons/IconRss.svg";
 
 import { getAssetPath } from "@/utils/withBase";
@@ -40,12 +39,10 @@ const rssHref = getAssetPath("rss.xml");
       {t.footer.allRightsReserved}
     </p>
 
-    <!-- REDES SOCIALES Y RSS -->
+    <!-- RSS -->
     <div
       class="flex flex-wrap items-center justify-center gap-4 sm:justify-end"
     >
-      <Socials />
-
       <!-- RSS -->
       <a
         href={rssHref}

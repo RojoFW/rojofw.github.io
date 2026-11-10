@@ -1,6 +1,14 @@
 import type { UIStrings } from "../types";
 
 export default {
+  sidebar: {
+    label: "RojoFW profile",
+    role: "Cybersecurity Analyst",
+    typing: ["Cybersecurity Engineering", "eJPT", "Pentesting and reverse engineering"],
+    socialLinks: "Social and contact links",
+    hide: "Hide profile",
+    show: "Show profile",
+  },
   nav: {
     home: "Home",
     posts: "Posts",

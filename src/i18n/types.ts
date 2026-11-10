@@ -1,4 +1,12 @@
 export interface UIStrings {
+  sidebar: {
+    label: string;
+    role: string;
+    typing: string[];
+    socialLinks: string;
+    hide: string;
+    show: string;
+  };
   nav: {
     home: string;
     posts: string;
