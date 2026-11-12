@@ -5,7 +5,7 @@ export default {
     label: "Perfil de RojoFW",
     role: "Analista de Ciberseguridad",
     summary: "Pentesting web, seguridad de infraestructura e ingeniería inversa.",
-    education: "Ingeniería en Ciberseguridad / EJPT",
+    education: "Ingeniería en Ciberseguridad / EJPT / H4U",
     socialLinks: "Redes y contacto",
   },
   nav: {
