@@ -1,7 +1,7 @@
 ---
-title: "AdSelect desde dentro: promesas, rutas y señales de alerta"
+title: "AdSelect: anatomía de una presunta estafa disfrazada de ingresos por anuncios"
 pubDatetime: 2026-11-10T04:00:00-00:00
-description: "Un recorrido por los dominios, el frontend y la API de AdSelect para separar lo que observamos de lo que todavía no podemos demostrar."
+description: "Dominios cambiantes, referidos manipulables, un panel improvisado y una caída en la fecha de retiro: por qué considero que AdSelect seguía un patrón de estafa."
 tags:
   - phishing
   - estafa
@@ -11,15 +11,17 @@ draft: true
 timezone: "America/Havana"
 ---
 
-# AdSelect desde dentro
+# AdSelect: cuando los dólares del dashboard no llegan al bolsillo
 
-## 1. Contexto: ¿de dónde sale la sospecha?
+## 1. Contexto: por qué considero que AdSelect era una estafa
 
-En estos últimos días han aparecido plataformas que prometen hacernos «millonarios» de manera fácil. XenPaid, por ejemplo, le hizo perder el tiempo a más de un conocido. Ahora tenemos a AdSelect, una especie de versión remasterizada del mismo cuento. En Cuba, donde la necesidad aprieta y la información no siempre llega clara, estas promesas encuentran público rápido.
+En estos últimos días han aparecido plataformas que prometen hacernos «millonarios» con tareas sencillas. XenPaid ya había dejado a conocidos míos perdiendo el tiempo; después apareció AdSelect, con una propuesta demasiado familiar. En Cuba, donde la necesidad aprieta, una plataforma que promete dólares por mirar anuncios y traer amigos no necesita mucho para volverse popular.
 
-Según lo que mostraba la plataforma durante esta revisión, ofrecía entre **3 y 5 dólares por ver anuncios** y un bono de **10 dólares por referido**, además de comisiones. Suena bien, quizá demasiado bien. Pero una promesa llamativa no demuestra por sí sola que sea una estafa. Vamos a mirar qué se puede comprobar y dónde se tensa la historia.
+AdSelect anunciaba **entre 3 y 5 dólares por ver anuncios** y **10 dólares por referido**, además de otras comisiones. Desde el primer momento me olió mal. Después de revisar sus dominios, inspeccionar el frontend, analizar su API y poner a prueba la lógica de referidos, mi valoración es clara: **considero que AdSelect seguía un patrón de estafa, no el de un negocio sostenible y confiable**.
 
-> **Alcance:** observaciones realizadas entre el 10 y el 11 de noviembre de 2026. Los dominios y el contenido del sitio cambiaron durante la redacción; una captura o respuesta de esa fecha no describe necesariamente su estado actual.
+No baso esa conclusión en un dominio recién registrado ni en que una página esté mal programada. Es la **combinación** de promesas de ingresos, cambios apresurados, controles deficientes, similitudes con XenPaid y, especialmente, la **caída de la plataforma en la fecha anunciada para retirar** lo que termina de dibujar el patrón.
+
+> **Alcance y cronología:** el análisis técnico corresponde principalmente al **10 y 11 de noviembre de 2026**. Las pruebas del antiguo panel `/admin` se recuperaron de capturas de una versión anterior. La caída en el día previsto para los retiros es una observación posterior aportada para esta actualización; no se adjunta aquí un registro independiente de disponibilidad o una transacción de retiro fallida. Este artículo es mi evaluación técnica y crítica, no una identificación judicial de los operadores.
 
 ## 2. OSINT: dominios y huellas públicas
 
@@ -37,7 +39,9 @@ Consulté el historial de [Who.is para `adselect.net`](https://who.is/history/ad
 | Estados | `clientHold`, `clientTransferProhibited` |
 | Servidores DNS | Cloudflare |
 
-La fecha de 2003 corresponde al **registro del dominio**, no al nacimiento de la plataforma. Tampoco usar privacidad de registro o Cloudflare demuestra fraude: son prácticas habituales. `clientHold` sí merece atención porque puede impedir que el dominio resuelva, pero el registro por sí solo no explica la causa.
+El dominio existía desde 2003, pero **eso no significa que AdSelect llevara operando desde entonces**. La actualización del 9 de noviembre, justo cuando la plataforma estaba en movimiento, llamó mi atención. Sospecho que el dominio pudo haber sido readquirido o reutilizado recientemente; **la fecha de actualización por sí sola no confirma una compraventa ni un cambio de titular**. Para demostrarlo haría falta un historial registral más completo.
+
+Los servicios de privacidad y Cloudflare no son sospechosos por sí mismos. El estado `clientHold`, en cambio, sí puede afectar a la resolución del dominio. Visto junto a la rapidez de los cambios, el historial no transmitía estabilidad.
 
 En las búsquedas aparecieron nombres parecidos, entre ellos `adselect.cc`. La semejanza del nombre tampoco prueba una relación. Para este segundo dominio encontré lo siguiente en las consultas de registro:
 
@@ -50,7 +54,7 @@ En las búsquedas aparecieron nombres parecidos, entre ellos `adselect.cc`. La s
 | Servidores DNS | Cloudflare |
 | Estado | `clientTransferProhibited` |
 
-`adselect.cc` era reciente en la fecha de la revisión. Eso justifica mirar con más cuidado, pero todavía no alcanza para dictar sentencia.
+`adselect.cc` se había registrado apenas unos días antes de la revisión. No doy por hecha su relación operativa con los otros dominios, pero su aparición alrededor de las mismas fechas reforzó la necesidad de seguir el rastro de nombres y cambios.
 
 ### 2.2. Wayback Machine
 
@@ -64,11 +68,11 @@ Esta era una de las vistas antiguas del panel:
 
 ![Vista anterior del panel de AdSelect](../../assets/images/blog/adselect/dashboard_old.png)
 
-Una captura archivada confirma que una página se veía así en ese momento; no confirma quién la operaba ni que pagara a sus usuarios.
+La comparación histórica importa porque **la antigüedad de un dominio no es la antigüedad de este negocio**. Y una captura bonita de un dashboard tampoco demuestra que alguien haya cobrado lo que marca el saldo.
 
-## 3. Enumeración: lo que entrega el navegador
+## 3. Por dentro: un frontend que inspira poca confianza
 
-Lo primero que me sorprendió del dashboard, además del **tremendo vibecoding**, fue la ausencia de `capitalize_case` en varios textos. Pero bueno, pongámonos más técnicos.
+Lo primero que me chocó del dashboard fue el **tremendo aire a vibecoding**: textos descuidados, detalles de interfaz inconsistentes y una experiencia que parecía construida a toda prisa. No puedo probar que se usara IA para escribir el código, ni sería un problema por sí mismo; mi crítica es que **una plataforma que dice administrar dinero debería demostrar bastante más rigor**. Pero bueno, pongámonos técnicos.
 
 ![Primera captura del dashboard](../../assets/images/blog/adselect/dashboard_1.png)
 
@@ -111,9 +115,9 @@ Desde `/login` y `/register` aparecieron estas rutas. También probé la enumera
 | `/api/public/registration-mode` | Modo de registro |
 | `/api/public/sponsor` | Datos del patrocinador |
 
-Encontrar una ruta en el frontend **no demuestra** que siga activa, que acepte un método concreto ni que sea vulnerable. Para afirmar eso hacen falta respuestas observadas y pruebas acotadas. Días antes, `/admin` también permitía ver referencias a rutas administrativas; durante esta revisión ya no aparecían de la misma forma. Vale la pena recuperar aquella observación porque ayuda a entender cómo estaba construida la interfaz original.
+La exposición de rutas no es automáticamente una vulnerabilidad; sí ayuda a reconstruir cómo trabaja el sistema. Días antes, `/admin` también revelaba parte de la lógica de la vista administrativa, que recupero a continuación porque ilustra **el contraste entre la apariencia de plataforma financiera y lo improvisado de algunas decisiones del frontend**. Vale la pena recuperar aquella observación porque ayuda a entender cómo estaba construida la interfaz original.
 
-### 3.3. Una ventana al antiguo panel de administración
+### 3.3. El antiguo panel de administración: una fachada alterable
 
 > **Nota sobre la evidencia histórica:** lo que sigue reconstruye una prueba realizada contra una versión anterior de AdSelect a partir de notas y capturas conservadas. **Ese comportamiento ya no estaba disponible para repetirlo durante la revisión posterior**, después de los cambios del sitio. Por tanto, esta sección explica cómo funcionaba la interfaz en aquel momento, no cómo funciona la plataforma actualmente. Las capturas enlazadas documentan la prueba original; no deben interpretarse como evidencia de acceso administrativo vigente.
 
@@ -148,25 +152,23 @@ El resultado fue esta vista del antiguo dashboard de administración:
 
 Aquí está la distinción clave: **pude visualizar una pantalla administrativa, pero no acceder a sus funcionalidades privilegiadas**. El cambio se realizó sobre la respuesta que veía el navegador; no hay evidencia de que se alterara el rol almacenado en el servidor ni de que las API administrativas aceptaran operaciones no autorizadas.
 
-Esto sugiere que, al menos en aquella versión, la **presentación de la ruta administrativa dependía de una comprobación en el cliente** que podía manipularse. Sin embargo, no permite concluir que faltara toda protección del lado del servidor, ni que existiera una vulnerabilidad explotable de escalada de privilegios. Para afirmar eso habría que comprobar de manera independiente los controles de autorización de cada operación administrativa.
+El resultado deja en evidencia una decisión de diseño poco cuidada: **la visualización del panel dependía de un valor controlable en la respuesta recibida por el navegador**. No obtuve acceso real a funciones administrativas ni demostré escalada de privilegios; el backend podía conservar sus propias comprobaciones. Pero exhibir así una consola interna no es precisamente lo que esperaba de una plataforma que pretendía gestionar saldos y pagos.
 
-#### 3.3.1. Los textos que llamaron la atención
+#### 3.3.1. Los textos del panel: otra señal de improvisación
 
-Una vez visible la interfaz, encontré mensajes y expresiones en inglés cuya redacción me recordó a usos propios del **inglés de la India**. Estas observaciones formaron parte de las primeras pistas que me llevaron a preguntarme quién había construido AdSelect. Conservo dos capturas de aquellos textos:
+Dentro de aquella vista encontré expresiones en inglés poco naturales y giros que me recordaron al inglés utilizado en la India. Conservo las capturas porque forman parte de la investigación histórica y muestran el **escaso cuidado editorial y la falta de coherencia lingüística** de esa interfaz.
 
-![Primera captura de expresiones observadas en la antigua interfaz administrativa](../../assets/images/blog/adselect/textos_indish.png)
+![Expresiones observadas en la antigua interfaz administrativa](../../assets/images/blog/adselect/textos_indish.png)
 
-![Segunda captura de expresiones observadas en la antigua interfaz administrativa](../../assets/images/blog/adselect/textos_indish_2.png)
+![Más textos inconsistentes del antiguo panel](../../assets/images/blog/adselect/textos_indish_2.png)
 
-Ahora bien, **el estilo de redacción no permite identificar la nacionalidad ni la ubicación de los responsables**. Ese inglés podría proceder de un desarrollador, una plantilla reutilizada, una traducción, contenido copiado o un tercero. Sin otras pruebas independientes, sería incorrecto afirmar que los creadores de AdSelect eran indios.
+No voy a atribuir la estafa a personas de una nacionalidad determinada: **escribir en inglés con rasgos regionales no demuestra quién creó el sitio ni que su autor sea un estafador**. La crítica relevante es otra: había textos extraños, una interfaz administrativa expuesta en el cliente y señales de un producto ensamblado con poca revisión.
 
-¿Por qué incluir entonces estas imágenes? Porque muestran una parte del proceso real de investigación: a veces una anomalía lingüística abre una hipótesis que merece explorar, aunque no llegue a demostrarse. **La pista es interesante; la atribución sigue abierta.**
+La versión de la que salen estas capturas **ya no estaba accesible en la revisión posterior**. Por eso las presento como evidencia histórica de cómo se veía la aplicación, no como una vulnerabilidad vigente.
 
-Por último, el hecho de que esta vista desapareciera o dejara de ser reproducible tras los cambios de la plataforma tampoco demuestra, por sí solo, que alguien corrigiera una vulnerabilidad o intentara ocultar información. Solo sabemos que el comportamiento observado en la versión anterior dejó de estar disponible durante la revisión posterior.
+## 4. Análisis activo: controles débiles en una plataforma que promete dinero
 
-## 4. Análisis activo: tres comportamientos a revisar
-
-Al observar las solicitudes en Burp Suite aparecieron tres puntos que merecen una revisión más cuidadosa:
+Al observar las solicitudes en Burp Suite aparecieron tres comportamientos preocupantes. En un sitio que gestiona cuentas y supuestas recompensas, **los controles de negocio importan tanto como los de seguridad**:
 
 1. **Recuperación de contraseña.** El flujo parecía pedir correo y número de teléfono para cambiar la contraseña. Si ambos datos bastan y no hay una verificación adicional, podría existir un problema de toma de cuentas. La captura muestra el flujo observado, pero no prueba por sí sola que se pueda tomar una cuenta ajena.
 
@@ -182,7 +184,7 @@ Al observar las solicitudes en Burp Suite aparecieron tres puntos que merecen un
 
 ![Solicitud de registro observada](../../assets/images/blog/adselect/register.png)
 
-## 5. Prueba de concepto: ¿dinero o solo un número?
+## 5. Prueba de concepto: fabricar saldo es fácil, cobrarlo es otra historia
 
 Para explorar el caso de los referidos utilicé [M.A.C.A.C.O](https://github.com/RojoFW/M.A.C.A.C.O), una herramienta que desarrollé para repetir solicitudes POST a partir de una plantilla. La idea era comprobar si el panel acreditaba bonos al crear cuentas asociadas a un mismo patrocinador.
 
@@ -190,16 +192,39 @@ La captura siguiente muestra el **saldo que presentó la interfaz** después de 
 
 ![Saldo mostrado en el panel después de la prueba de referidos](../../assets/images/blog/adselect/ingresos.png)
 
-Y listo, ¿tenemos 1000 dólares? Jeje... si realmente fuese tan fácil. **Un saldo en pantalla no equivale a dinero retirado.** La observación apunta a una posible manipulación del contador de referidos, pero para hablar de ganancias reales haría falta documentar un retiro completado y verificable. También faltaría comprobar si el sistema revierte cuentas duplicadas más tarde.
+Y listo, ¿tenemos **470 dólares**? Jeje... si realmente fuese tan fácil. **Solo faltaría «retirarlos».**
 
-## 6. Lo que cambió mientras escribía
+Esa fue precisamente la parte más reveladora: el sistema podía mostrar recompensas originadas por registros repetidos, pero **un saldo en una base de datos no equivale a dinero disponible ni a un retiro real**. La prueba muestra una debilidad aparente en el cómputo de referidos; no demuestra que se completara un cobro y tampoco permite saber si el backend anularía después esos registros.
 
-Mientras preparaba esta guía dejé de poder acceder a `adselect.net` y encontré la página en `adselect.org`. La consulta de registro de `.org` indicaba creación y actualización el **10 de noviembre de 2026 a las 02:53 UTC**, con Namecheap como registrador, Cloudflare como DNS y los estados `clientTransferProhibited` y `addPeriod`.
+Aun con esa limitación, el resultado es grave desde el punto de vista de la confianza: si una plataforma promete pagos por referidos, **debería validar seriamente a quién recompensa**. Aquí la cifra del dashboard crecía mucho más fácilmente de lo que se podía verificar su legitimidad.
 
-El **11 de noviembre** la página ya había cambiado drásticamente; en esa revisión parecía estar montada en WordPress. Por eso las capturas, la versión de Next.js, las rutas enumeradas y la prueba histórica del panel `/admin` deben leerse como una **fotografía del momento**, no como una descripción permanente del dominio. En particular, la prueba con Match and Replace corresponde a una versión anterior que ya no pude reproducir en la revisión posterior.
+## 6. La similitud con XenPaid: el mismo libreto
 
-## 7. Conclusión
+El parecido visual y funcional con **XenPaid**, una plataforma anterior que ya no estaba disponible durante mi revisión, fue otra alarma. Mi impresión es que AdSelect retomaba el mismo libreto: anuncios, recompensas, referidos y la expectativa de acumular dinero que supuestamente se podría retirar después.
 
-Hay señales suficientes para desconfiar y seguir investigando: promesas de ingresos llamativas, cambios rápidos de dominio, una antigua interfaz administrativa cuya presentación dependía de una respuesta de sesión modificable en el navegador y un flujo de referidos que parecía permitir inflar el saldo mostrado. Lo que pude observar **no basta para demostrar pagos reales ni para identificar a los responsables**. Esa distinción importa: una investigación técnica gana fuerza cuando deja claro qué vio, qué infiere y qué todavía no sabe.
 
-Si usaste la plataforma, guarda capturas y comprobantes de cualquier pago o retiro. Ahí está la evidencia que podría cerrar la pregunta más importante de esta historia.
+![Comparativa pendiente: dashboard de XenPaid frente al de AdSelect](../../assets/images/blog/adselect/comparativa_adselect_xenpaid.png)
+
+No necesito afirmar que los dos sitios pertenecían a las mismas personas para considerarlo relevante. Mi crítica va al **modelo que se repetía** y a la ausencia de una explicación convincente sobre la procedencia del dinero que se prometía repartir.
+
+## 7. Cambios de dominio y caída en el día del retiro
+
+Mientras preparaba la investigación dejé de poder acceder a `adselect.net` y encontré la página en `adselect.org`. El registro de `.org` indicaba creación y actualización el **10 de noviembre de 2026 a las 02:53 UTC**, con Namecheap como registrador, Cloudflare como DNS y estados `clientTransferProhibited` y `addPeriod`.
+
+El **11 de noviembre** la página ya había cambiado drásticamente y parecía estar montada en WordPress. Pasar de la versión inspeccionada con Next.js a otra presentación, al mismo tiempo que se cambiaban dominios, no proyectaba precisamente estabilidad.
+
+Pero para mí la señal decisiva llegó después: **según lo observado, AdSelect dejó de funcionar justamente el día previsto, (Hoy 12 de noviembre) para los retiros**. Durante la etapa de acumulación de supuestas ganancias, el saldo estaba ahí para generar expectativas; cuando tocaba comprobar que esos números se podían convertir en dinero, la plataforma ya no estaba disponible.
+
+Ese desenlace **encaja con un patrón de fraude por recompensas ficticias**: se atraen usuarios con ganancias aparentes, se incentivan los referidos y el sistema deja de responder cuando llega el momento de pagar. En este artículo no presento una prueba de transferencia fallida ni registros técnicos de disponibilidad de esa fecha; describo la caída reportada y explico por qué, unida al resto de hallazgos, pesa tanto en mi valoración.
+
+## 8. Conclusión: mi veredicto sobre AdSelect
+
+**Para mí, AdSelect fue una estafa.** No llego a esa conclusión por una frase mal traducida, porque use Next.js o porque el dominio tenga privacidad. Llego por la acumulación de hechos y observaciones:
+
+1. **Dominios e infraestructura inestables.** Un dominio antiguo actualizado recientemente, otro recién registrado y una migración visible en cuestión de días. La supuesta readquisición de `adselect.net` es una hipótesis, no un hecho demostrado.
+2. **Lógica de negocio floja.** Los flujos de recuperación, registro y referidos mostraron deficiencias o condiciones que justificaban una seria desconfianza para una plataforma que decía manejar dinero.
+3. **Producto improvisado.** Interfaz inconsistente, panel administrativo que se podía visualizar cambiando una respuesta en el navegador y similitudes llamativas con XenPaid; esto último no demuestra operadores compartidos.
+4. **Ganancias que existían, sobre todo, en pantalla.** La prueba de referidos permitió ver crecer el saldo aparente sin documentar un retiro efectivo.
+5. **El momento del desplome.** La plataforma dejó de estar disponible, según la observación recogida, precisamente cuando correspondía comprobar los retiros.
+
+
