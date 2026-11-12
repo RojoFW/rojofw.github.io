@@ -15,6 +15,7 @@ type Props = {
 };
 
 const { site } = config;
+const isInvestigationPage = /^(?:\/en)?\/posts\//.test(Astro.url.pathname);
 
 const {
   title = site.title,
@@ -31,6 +32,7 @@ const rssHref = getAssetPath("rss.xml");
 <html
   dir={site.dir ?? "ltr"}
   lang={Astro.currentLocale ?? site.lang}
+  data-investigation-page={isInvestigationPage ? "true" : undefined}
   class="overflow-y-scroll scroll-smooth"
 >
   <head>
@@ -130,6 +132,12 @@ const rssHref = getAssetPath("rss.xml");
   .site-frame { display: flex; min-height: 100svh; flex: 1; flex-direction: column; }
   .layout-shell { display: flex; min-height: 100svh; flex-direction: column; }
   @media (min-width: 56rem) and (min-height: 32rem) {
-    .site-frame { display: grid; grid-template-columns: clamp(13rem, 20vw, 16rem) minmax(0, 1fr); align-items: stretch; }
+    .site-frame { display: grid; grid-template-columns: clamp(13rem, 20vw, 16rem) minmax(0, 1fr); align-items: stretch; transition: grid-template-columns 320ms ease; }
+    .profile-sidebar { transition: transform 320ms ease, opacity 220ms ease; }
+    html[data-investigation-page="true"] .site-frame { grid-template-columns: 0fr minmax(0, 1fr); }
+    html[data-investigation-page="true"] .profile-sidebar { transform: translateX(-100%); opacity: 0; visibility: hidden; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .site-frame, .profile-sidebar { transition-duration: 0.01ms !important; }
   }
 </style>
