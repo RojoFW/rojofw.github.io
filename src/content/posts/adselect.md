@@ -7,7 +7,7 @@ tags:
   - estafa
   - pentesting
 featured: false
-draft: true
+draft: false
 timezone: "America/Havana"
 ---
 
