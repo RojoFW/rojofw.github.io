@@ -1,0 +1,884 @@
+<!DOCTYPE html><html dir="ltr" lang="es" class="overflow-y-scroll scroll-smooth" data-astro-cid-ju4pidww><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="icon" href="/favicon.ico"><link rel="canonical" href="https://rojofw.github.io/posts/adselect/"><meta name="generator" content="Astro v7.4.5"><!-- Font --><style>@font-face{font-family:"Google Sans Code-1a30c214885cb404";src:url("/_astro/fonts/2213c1e7fbe06cc7.woff") format("woff"), url("/_astro/fonts/b87f789471b4c602.ttf") format("truetype");font-display:swap;font-weight:300;font-style:italic;}@font-face{font-family:"Google Sans Code-1a30c214885cb404";src:url("/_astro/fonts/c487dbd9c215141e.woff") format("woff"), url("/_astro/fonts/bb0c016d60298234.ttf") format("truetype");font-display:swap;font-weight:400;font-style:italic;}@font-face{font-family:"Google Sans Code-1a30c214885cb404";src:url("/_astro/fonts/0976c79a1e97c08d.woff") format("woff"), url("/_astro/fonts/b3e69a4f03324880.ttf") format("truetype");font-display:swap;font-weight:500;font-style:italic;}@font-face{font-family:"Google Sans Code-1a30c214885cb404";src:url("/_astro/fonts/3c46d5a1dde2929d.woff") format("woff"), url("/_astro/fonts/0ff1dfaf1dff21d0.ttf") format("truetype");font-display:swap;font-weight:600;font-style:italic;}@font-face{font-family:"Google Sans Code-1a30c214885cb404";src:url("/_astro/fonts/e9aa617e80052f4b.woff") format("woff"), url("/_astro/fonts/d9a5ad8b8018e5de.ttf") format("truetype");font-display:swap;font-weight:700;font-style:italic;}@font-face{font-family:"Google Sans Code-1a30c214885cb404";src:url("/_astro/fonts/5056f1a50e5e7744.woff") format("woff"), url("/_astro/fonts/3e4dac0d0220e48a.ttf") format("truetype");font-display:swap;font-weight:300;font-style:normal;}@font-face{font-family:"Google Sans Code-1a30c214885cb404";src:url("/_astro/fonts/e734307f8c328338.woff") format("woff"), url("/_astro/fonts/ba3036786bf88603.ttf") format("truetype");font-display:swap;font-weight:400;font-style:normal;}@font-face{font-family:"Google Sans Code-1a30c214885cb404";src:url("/_astro/fonts/dfa89044152f7da4.woff") format("woff"), url("/_astro/fonts/39aec4e7fc7cc077.ttf") format("truetype");font-display:swap;font-weight:500;font-style:normal;}@font-face{font-family:"Google Sans Code-1a30c214885cb404";src:url("/_astro/fonts/8bbd58b325585200.woff") format("woff"), url("/_astro/fonts/b33609507afd910d.ttf") format("truetype");font-display:swap;font-weight:600;font-style:normal;}@font-face{font-family:"Google Sans Code-1a30c214885cb404";src:url("/_astro/fonts/035035a9ddbd14aa.woff") format("woff"), url("/_astro/fonts/50fcf54bf575f53f.ttf") format("truetype");font-display:swap;font-weight:700;font-style:normal;}@font-face{font-family:"Google Sans Code-1a30c214885cb404 fallback: Courier New";src:local("Courier New");font-display:swap;font-weight:300;font-style:italic;size-adjust:99.9837%;ascent-override:96.6157%;descent-override:28.6047%;}@font-face{font-family:"Google Sans Code-1a30c214885cb404 fallback: Courier New";src:local("Courier New");font-display:swap;font-weight:400;font-style:italic;size-adjust:99.9837%;ascent-override:96.6157%;descent-override:28.6047%;}@font-face{font-family:"Google Sans Code-1a30c214885cb404 fallback: Courier New";src:local("Courier New");font-display:swap;font-weight:500;font-style:italic;size-adjust:99.9837%;ascent-override:96.6157%;descent-override:28.6047%;}@font-face{font-family:"Google Sans Code-1a30c214885cb404 fallback: Courier New";src:local("Courier New");font-display:swap;font-weight:600;font-style:italic;size-adjust:99.9837%;ascent-override:96.6157%;descent-override:28.6047%;}@font-face{font-family:"Google Sans Code-1a30c214885cb404 fallback: Courier New";src:local("Courier New");font-display:swap;font-weight:700;font-style:italic;size-adjust:99.9837%;ascent-override:96.6157%;descent-override:28.6047%;}@font-face{font-family:"Google Sans Code-1a30c214885cb404 fallback: Courier New";src:local("Courier New");font-display:swap;font-weight:300;font-style:normal;size-adjust:99.9837%;ascent-override:96.6157%;descent-override:28.6047%;}@font-face{font-family:"Google Sans Code-1a30c214885cb404 fallback: Courier New";src:local("Courier New");font-display:swap;font-weight:400;font-style:normal;size-adjust:99.9837%;ascent-override:96.6157%;descent-override:28.6047%;}@font-face{font-family:"Google Sans Code-1a30c214885cb404 fallback: Courier New";src:local("Courier New");font-display:swap;font-weight:500;font-style:normal;size-adjust:99.9837%;ascent-override:96.6157%;descent-override:28.6047%;}@font-face{font-family:"Google Sans Code-1a30c214885cb404 fallback: Courier New";src:local("Courier New");font-display:swap;font-weight:600;font-style:normal;size-adjust:99.9837%;ascent-override:96.6157%;descent-override:28.6047%;}@font-face{font-family:"Google Sans Code-1a30c214885cb404 fallback: Courier New";src:local("Courier New");font-display:swap;font-weight:700;font-style:normal;size-adjust:99.9837%;ascent-override:96.6157%;descent-override:28.6047%;}:root{--font-google-sans-code:"Google Sans Code-1a30c214885cb404","Google Sans Code-1a30c214885cb404 fallback: Courier New",monospace;}</style><!-- Primary meta --><title>AdSelect: anatomía de una presunta estafa disfrazada de ingresos por anuncios | A Cracker&#39;s Blog</title><meta name="title" content="AdSelect: anatomía de una presunta estafa disfrazada de ingresos por anuncios | A Cracker's Blog"><meta name="description" content="Dominios cambiantes, referidos manipulables, un panel improvisado y una caída en la fecha de retiro: por qué considero que AdSelect seguía un patrón de estafa."><meta name="author" content="Roberto Lazaro Ramos Pereiro"><link rel="sitemap" href="/sitemap-index.xml"><!-- Open Graph --><meta property="og:type" content="website"><meta property="og:site_name" content="A Cracker's Blog"><meta property="og:title" content="AdSelect: anatomía de una presunta estafa disfrazada de ingresos por anuncios | A Cracker's Blog"><meta property="og:description" content="Dominios cambiantes, referidos manipulables, un panel improvisado y una caída en la fecha de retiro: por qué considero que AdSelect seguía un patrón de estafa."><meta property="og:url" content="https://rojofw.github.io/posts/adselect/"><meta property="og:image" content="https://rojofw.github.io/posts/adselect/index.png"><!-- Twitter / X --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://rojofw.github.io/posts/adselect/"><meta property="twitter:title" content="AdSelect: anatomía de una presunta estafa disfrazada de ingresos por anuncios | A Cracker's Blog"><meta property="twitter:description" content="Dominios cambiantes, referidos manipulables, un panel improvisado y una caída en la fecha de retiro: por qué considero que AdSelect seguía un patrón de estafa."><meta property="twitter:image" content="https://rojofw.github.io/posts/adselect/index.png"><!-- RSS autodiscovery --><link rel="alternate" type="application/rss+xml" title="A Cracker's Blog" href="https://rojofw.github.io/rss.xml"><!-- Filled at runtime by theme.ts to match the current background colour --><meta name="theme-color" content=""><!-- Extra head content injected by child layouts (e.g. JSON-LD, article meta) --><meta property="og:type" content="article"><meta property="article:published_time" content="2026-11-10T04:00:00.000Z"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"AdSelect: anatomía de una presunta estafa disfrazada de ingresos por anuncios | A Cracker's Blog","image":"https://rojofw.github.io/posts/adselect/index.png","datePublished":"2026-11-10T04:00:00.000Z","author":[{"@type":"Person","name":"Roberto Lazaro Ramos Pereiro","url":"https://github.com/rojofw"}]}</script><!--
+      Inline FOUC-prevention script: sets data-theme on <html> before
+      the browser paints. Runs synchronously, no defer/async.
+    --><script>
+      (function () {
+        const stored = localStorage.getItem("theme");
+        const prefersDark = window.matchMedia(
+          "(prefers-color-scheme: dark)"
+        ).matches;
+        const theme = stored ?? (prefersDark ? "dark" : "light");
+        const root = document.firstElementChild;
+        root?.setAttribute("data-theme", theme);
+        root?.classList.toggle("dark", theme === "dark");
+        // Expose value so theme.ts can skip re-detection.
+        window.__theme = { value: theme };
+      })();
+    </script><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.DXqcZz58.js"></script><link rel="stylesheet" href="/_astro/Footer.BIHbl0oq.css"><link rel="stylesheet" href="/_astro/index.CVT8B135.css"><style>.contact-content[data-astro-cid-6bfsojfh]{gap:2rem;max-width:48rem;padding-bottom:3rem;display:grid}section[data-astro-cid-6bfsojfh]{border-top:1px solid var(--color-border);padding-top:1.25rem}h2[data-astro-cid-6bfsojfh]{color:var(--color-accent);margin-bottom:.75rem;font-size:1.2rem;font-weight:700}p[data-astro-cid-6bfsojfh],li[data-astro-cid-6bfsojfh]{line-height:1.8}section[data-astro-cid-6bfsojfh]>ul[data-astro-cid-6bfsojfh]{padding-left:1.25rem;list-style:outside}section[data-astro-cid-6bfsojfh]>ul[data-astro-cid-6bfsojfh] li[data-astro-cid-6bfsojfh]+li[data-astro-cid-6bfsojfh]{margin-top:.4rem}.contact-details[data-astro-cid-6bfsojfh]>ul[data-astro-cid-6bfsojfh]{margin-top:1rem;padding:0;list-style:none}.contact-details[data-astro-cid-6bfsojfh] li[data-astro-cid-6bfsojfh]{overflow-wrap:anywhere;gap:.15rem;display:grid}.contact-details[data-astro-cid-6bfsojfh] li[data-astro-cid-6bfsojfh] span[data-astro-cid-6bfsojfh]{color:var(--color-muted-foreground);font-size:.85rem}a[data-astro-cid-6bfsojfh]{color:var(--color-accent);text-underline-offset:.2em;text-decoration:underline}@media (width>=40rem){.contact-details[data-astro-cid-6bfsojfh] li[data-astro-cid-6bfsojfh]{grid-template-columns:8rem minmax(0,1fr);gap:1rem}}
+@keyframes astroFadeInOut{0%{opacity:1}to{opacity:0}}@keyframes astroFadeIn{0%{opacity:0;mix-blend-mode:plus-lighter}to{opacity:1;mix-blend-mode:plus-lighter}}@keyframes astroFadeOut{0%{opacity:1;mix-blend-mode:plus-lighter}to{opacity:0;mix-blend-mode:plus-lighter}}@keyframes astroSlideFromRight{0%{transform:translate(100%)}}@keyframes astroSlideFromLeft{0%{transform:translate(-100%)}}@keyframes astroSlideToRight{to{transform:translate(100%)}}@keyframes astroSlideToLeft{to{transform:translate(-100%)}}@media (prefers-reduced-motion){::view-transition-group(*),::view-transition-old(*),::view-transition-new(*),[data-astro-transition-scope]{animation:none!important}}
+</style><link rel="stylesheet" href="/_astro/search.WpEKDbWv.css"><style>@keyframes home-fade-in{0%{opacity:0}to{opacity:1}}.hero-reveal[data-astro-cid-lcdefpme]{animation:.56s ease-out both home-fade-in}.hero-reveal-1[data-astro-cid-lcdefpme]{animation-delay:40ms}.hero-reveal-2[data-astro-cid-lcdefpme]{animation-delay:.14s}.home-section-reveal[data-astro-cid-lcdefpme]{animation:.65s ease-out .38s both home-fade-in}.terminal-line[data-astro-cid-lcdefpme]{white-space:nowrap;align-items:center;max-width:100%;min-height:1.7em;line-height:1.6;display:flex}.terminal-prompt[data-astro-cid-lcdefpme]{user-select:none;flex-shrink:0}.hero-specialty[data-astro-cid-lcdefpme]{min-width:0;display:inline-block}.terminal-cursor[data-astro-cid-lcdefpme]{background-color:var(--accent);flex-shrink:0;width:2px;height:1.1em;margin-left:4px;animation:.85s step-end infinite terminal-blink;display:inline-block}@keyframes terminal-blink{0%,49%{opacity:1}50%,to{opacity:0}}@keyframes knowledge-glow{0%,to{text-shadow:0 0 #0000}50%{text-shadow:0 0 8px color-mix(in srgb, var(--accent) 40%, transparent), 0 0 20px color-mix(in srgb, var(--accent) 15%, transparent)}}.hero-glow[data-astro-cid-lcdefpme]{animation:5s ease-in-out infinite knowledge-glow}@media (prefers-reduced-motion:reduce){.hero-reveal[data-astro-cid-lcdefpme],.home-section-reveal[data-astro-cid-lcdefpme],.hero-glow[data-astro-cid-lcdefpme],.terminal-cursor[data-astro-cid-lcdefpme]{animation:none!important}}
+</style><style>[data-astro-transition-scope="astro-bztu2lml-1"] { view-transition-name: phishing; }@layer astro { ::view-transition-old(phishing) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(phishing) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(phishing) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(phishing) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-bztu2lml-1"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-bztu2lml-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-bztu2lml-1"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-bztu2lml-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-bztu2lml-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-bztu2lml-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-bztu2lml-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-bztu2lml-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style><style>[data-astro-transition-scope="astro-bztu2lml-2"] { view-transition-name: estafa; }@layer astro { ::view-transition-old(estafa) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(estafa) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(estafa) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(estafa) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-bztu2lml-2"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-bztu2lml-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-bztu2lml-2"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-bztu2lml-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-bztu2lml-2"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-bztu2lml-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-bztu2lml-2"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-bztu2lml-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style><style>[data-astro-transition-scope="astro-bztu2lml-3"] { view-transition-name: pentesting; }@layer astro { ::view-transition-old(pentesting) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(pentesting) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(pentesting) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(pentesting) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-bztu2lml-3"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-bztu2lml-3"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-bztu2lml-3"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-bztu2lml-3"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-bztu2lml-3"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-bztu2lml-3"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-bztu2lml-3"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-bztu2lml-3"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style></head><body class="bg-background font-app text-foreground selection:bg-accent/75 selection:text-accent-foreground flex min-h-svh flex-col" data-astro-cid-ju4pidww><div class="site-frame" data-astro-cid-ju4pidww><aside class="profile-sidebar" aria-label="Perfil de RojoFW" data-pagefind-ignore data-astro-cid-boiqmydq><div class="profile-content" data-astro-cid-boiqmydq><div class="avatar-ring" data-astro-cid-boiqmydq><img class="profile-avatar" src="https://github.com/rojofw.png?size=192" alt="Perfil de RojoFW" width="96" height="96" decoding="async" data-astro-cid-boiqmydq></div><div class="profile-identity" data-astro-cid-boiqmydq><p class="profile-name" data-astro-cid-boiqmydq>RojoFW</p><p class="profile-role" data-astro-cid-boiqmydq>Analista de Ciberseguridad</p><p class="profile-summary" data-astro-cid-boiqmydq>Pentesting web, seguridad de infraestructura e ingeniería inversa.</p></div><p class="profile-education" data-astro-cid-boiqmydq>Ingeniería en Ciberseguridad / EJPT</p><nav aria-label="Redes y contacto" class="profile-socials" data-astro-cid-boiqmydq><a href="https://github.com/rojofw" target="_blank" rel="noopener noreferrer" data-astro-cid-boiqmydq><svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="social-icon" viewBox="0 0 24 24" aria-hidden="true" data-astro-cid-boiqmydq="true"><path stroke="none" d="M0 0h24v24H0z" /><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21" /></svg><span data-astro-cid-boiqmydq>GitHub</span></a><a href="mailto:robertoramospereiro0412@gmail.com" data-astro-cid-boiqmydq><svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="social-icon" viewBox="0 0 24 24" aria-hidden="true" data-astro-cid-boiqmydq="true"><path stroke="none" d="M0 0h24v24H0z" /><path d="M3 7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" /><path d="m3 7 9 6 9-6" /></svg><span data-astro-cid-boiqmydq>Email</span></a><a href="https://t.me/+5352483300" target="_blank" rel="noopener noreferrer" data-astro-cid-boiqmydq><svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="social-icon" viewBox="0 0 24 24" aria-hidden="true" data-astro-cid-boiqmydq="true"><path stroke="none" d="M0 0h24v24H0z" /><path d="m15 10-4 4 6 6 4-16-18 7 4 2 2 6 3-4" /></svg><span data-astro-cid-boiqmydq>Telegram</span></a><a href="https://linkedin.com/in/roberto-ramos" target="_blank" rel="noopener noreferrer" data-astro-cid-boiqmydq><svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="social-icon" viewBox="0 0 24 24" aria-hidden="true" data-astro-cid-boiqmydq="true"><path stroke="none" d="M0 0h24v24H0z" /><path d="M8 11v5M8 8v.01M12 16v-5M16 16v-3a2 2 0 1 0-4 0" /><path d="M3 7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4z" /></svg><span data-astro-cid-boiqmydq>LinkedIn</span></a></nav></div></aside><div class="layout-shell" data-astro-cid-ju4pidww><!-- ACCESIBILIDAD --><a id="skip-to-content" href="#main-content" class="bg-background text-accent absolute inset-s-16 -top-full z-50 px-3 py-2 backdrop-blur-lg transition-all focus:top-4" data-astro-cid-nen7h5rs>Ir al contenido</a><!-- HEADER --><header class="app-layout" data-astro-cid-nen7h5rs><div class="border-border grid grid-cols-[minmax(0,1fr)_auto] items-center border-b py-3 sm:py-5" data-astro-cid-nen7h5rs><!-- ================================= --><!-- CONTROLES DE LA DERECHA --><!-- ================================= --><div class="col-start-2 row-start-1 flex shrink-0 items-center justify-end gap-0.5 sm:gap-2 lg:row-start-2" data-astro-cid-nen7h5rs><!-- BUSCADOR --><a href="/search/" title="Buscar" aria-label="Buscar" data-astro-cid-nen7h5rs="true" class="group inline-flex items-center gap-1 hover:text-accent focus-outline tech-icon-link no-underline hover:no-underline relative flex size-9 shrink-0 items-center justify-center rounded-md transition-colors duration-200 hover:text-accent sm:size-10 lg:size-9"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="size-5 sm:size-6" viewBox="0 0 24 24" data-astro-cid-nen7h5rs="true"><path stroke="none" d="M0 0h24v24H0z" /><path d="M3 10a7 7 0 1 0 14 0 7 7 0 1 0-14 0M21 21l-6-6" /></svg><span class="sr-only" data-astro-cid-nen7h5rs>Buscar</span></a><!-- SELECTOR DE TEMA --><button id="theme-btn" type="button" class="focus-outline hover:[&amp;&gt;svg]:stroke-accent relative flex size-9 shrink-0 items-center justify-center rounded-md sm:size-10 lg:size-9" title="Cambiar tema" aria-label="auto" aria-live="polite" data-astro-cid-nen7h5rs><svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="absolute top-1/2 left-1/2 size-5 -translate-x-1/2 -translate-y-1/2 scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90 sm:size-6" viewBox="0 0 24 24" data-astro-cid-nen7h5rs="true"><path stroke="none" d="M0 0h24v24H0z" /><path d="M12 3h.393a7.5 7.5 0 0 0 7.92 12.446A9 9 0 1 1 12 2.992z" /></svg><svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="absolute top-1/2 left-1/2 size-5 -translate-x-1/2 -translate-y-1/2 scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0 sm:size-6" viewBox="0 0 24 24" data-astro-cid-nen7h5rs="true"><path stroke="none" d="M0 0h24v24H0z" /><path d="M14.828 14.828a4 4 0 1 0-5.656-5.656 4 4 0 0 0 5.656 5.656M6.343 17.657l-1.414 1.414M6.343 6.343 4.929 4.929M17.657 6.343l1.414-1.414M17.657 17.657l1.414 1.414M4 12H2M12 4V2M20 12h2M12 20v2" /></svg></button><!-- SELECTOR DE IDIOMA: ESCRITORIO --><div class="hidden lg:flex lg:items-center" data-astro-cid-nen7h5rs><a href="/en/" lang="en" hreflang="en" aria-label="Inglés" title="Inglés" class="
+    focus-outline
+    border-border
+    bg-muted
+    text-accent
+    hover:bg-accent
+    hover:text-background
+    flex
+    size-9
+    shrink-0
+    items-center
+    justify-center
+    rounded-md
+    border
+    text-xs
+    font-semibold
+    transition-colors
+    duration-200
+    sm:size-10
+    lg:size-9
+  ">ES</a></div><!-- HAMBURGUESA / X: MÓVIL --><button id="menu-btn" type="button" class="focus-outline relative flex size-9 shrink-0 items-center justify-center rounded-md transition-colors hover:text-accent lg:hidden" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu-panel" data-label-open="Abrir menú" data-label-close="Cerrar menú" data-astro-cid-nen7h5rs><svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="size-5" viewBox="0 0 24 24" id="menu-icon" data-astro-cid-nen7h5rs="true"><path stroke="none" d="M0 0h24v24H0z" /><path d="M4 6h16M7 12h13M10 18h10" /></svg><svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="hidden size-5" viewBox="0 0 24 24" id="close-icon" data-astro-cid-nen7h5rs="true"><path stroke="none" d="M0 0h24v24H0z" /><path d="M18 6 6 18M6 6l12 12" /></svg></button></div><!-- ================================= --><!-- NAVEGACIÓN IZQUIERDA --><!-- ================================= --><nav id="nav-menu" aria-label="Navegación principal" class="col-span-2 col-start-1 row-start-2 min-w-0 w-full lg:col-span-1 lg:mt-3" data-astro-cid-nen7h5rs><!-- CONTENEDOR ANIMADO --><div id="menu-panel" class="menu-panel" data-astro-cid-nen7h5rs><div class="menu-inner" data-astro-cid-nen7h5rs><ul id="menu-items" class="grid grid-cols-1 gap-1 pt-4 lg:flex lg:flex-wrap lg:items-center lg:justify-start lg:gap-x-3 lg:gap-y-2 lg:pt-0" data-astro-cid-nen7h5rs><!-- INICIO --><li data-astro-cid-nen7h5rs><a href="/" class="tech-nav-link relative block no-underline hover:no-underline rounded-md px-3 py-3 font-medium whitespace-nowrap transition-colors duration-200 hover:text-accent lg:px-2 lg:py-1" data-astro-cid-nen7h5rs><span class="tech-nav-label" data-astro-cid-nen7h5rs>Inicio</span></a></li><!-- INVESTIGACIONES --><li data-astro-cid-nen7h5rs><a href="/posts/" class="tech-nav-link relative block no-underline hover:no-underline rounded-md px-3 py-3 font-medium whitespace-nowrap transition-colors duration-200 hover:text-accent lg:px-2 lg:py-1 tech-nav-active" aria-current="location" data-astro-cid-nen7h5rs><span class="tech-nav-label" data-astro-cid-nen7h5rs>Investigaciones</span></a></li><!-- ETIQUETAS --><li data-astro-cid-nen7h5rs><a href="/tags/" class="tech-nav-link relative block no-underline hover:no-underline rounded-md px-3 py-3 font-medium whitespace-nowrap transition-colors duration-200 hover:text-accent lg:px-2 lg:py-1" data-astro-cid-nen7h5rs><span class="tech-nav-label" data-astro-cid-nen7h5rs>Etiquetas</span></a></li><!-- CONTACTO --><li data-astro-cid-nen7h5rs><a href="/contact/" class="tech-nav-link relative block no-underline hover:no-underline rounded-md px-3 py-3 font-medium whitespace-nowrap transition-colors duration-200 hover:text-accent lg:px-2 lg:py-1" data-astro-cid-nen7h5rs><span class="tech-nav-label" data-astro-cid-nen7h5rs>Contacto</span></a></li><!-- ARCHIVO --><!-- IDIOMA: SOLO MENÚ MÓVIL --><li class="border-border mt-2 flex items-center justify-between border-t px-3 pt-4 lg:hidden" data-astro-cid-nen7h5rs><span class="text-muted-foreground text-sm" data-astro-cid-nen7h5rs>Idioma</span><a href="/en/" lang="en" hreflang="en" aria-label="Inglés" title="Inglés" class="
+    focus-outline
+    border-border
+    bg-muted
+    text-accent
+    hover:bg-accent
+    hover:text-background
+    flex
+    size-9
+    shrink-0
+    items-center
+    justify-center
+    rounded-md
+    border
+    text-xs
+    font-semibold
+    transition-colors
+    duration-200
+    sm:size-10
+    lg:size-9
+  ">ES</a></li></ul></div></div></nav></div></header><!-- ================================= --><!-- ANIMACIONES --><!-- ================================= --><!-- ================================= --><!-- JAVASCRIPT --><!-- ================================= --><script type="module">function e(){let e=document.querySelector(`#menu-btn`),t=document.querySelector(`#menu-panel`),n=document.querySelector(`#menu-items`),r=document.querySelector(`#menu-icon`),i=document.querySelector(`#close-icon`);if(!e||!t||!n||!r||!i||e.dataset.initialized===`true`)return;e.dataset.initialized=`true`;let a=e.dataset.labelOpen??`Open menu`,o=e.dataset.labelClose??`Close menu`,s=window.matchMedia(`(min-width: 1024px)`),c=()=>{let n=e.getAttribute(`aria-expanded`)===`true`;t.inert=!s.matches&&!n},l=n=>{e.setAttribute(`aria-expanded`,String(n)),e.setAttribute(`aria-label`,n?o:a),t.classList.toggle(`is-open`,n),r.classList.toggle(`hidden`,n),i.classList.toggle(`hidden`,!n),c()};l(!1),e.addEventListener(`click`,()=>{let t=e.getAttribute(`aria-expanded`)===`true`;l(!t)}),n.addEventListener(`click`,e=>{!s.matches&&e.target instanceof Element&&e.target.closest(`a`)&&l(!1)}),s.addEventListener(`change`,c),e.addEventListener(`keydown`,e=>{e.key===`Escape`&&l(!1)}),document.addEventListener(`keydown`,t=>{t.key===`Escape`&&e.getAttribute(`aria-expanded`)===`true`&&(l(!1),e.focus())})}function t(){let e=document.getElementById(`skip-to-content`);e&&e.dataset.initialized!==`true`&&(e.dataset.initialized=`true`,e.addEventListener(`click`,e=>{if(e.defaultPrevented||e.metaKey||e.ctrlKey||e.shiftKey||e.button!==0)return;e.preventDefault();let t=document.getElementById(`main-content`);t&&(t.setAttribute(`tabindex`,`-1`),t.addEventListener(`blur`,()=>t.removeAttribute(`tabindex`),{once:!0}),t.focus(),t.scrollIntoView({behavior:`smooth`}))}))}e(),t(),document.addEventListener(`astro:after-swap`,()=>{e(),t()});</script><div class="app-layout flex items-center justify-start"><a id="back-button" href="/" class="group inline-flex items-center gap-1 hover:text-accent focus-outline hover:text-foreground/75 -ms-2 mt-8 mb-2"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="inline-block size-6 rtl:rotate-180" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" /><path d="m15 6-6 6 6 6" /></svg><span>Volver</span></a></div><script type="module">function e(){let e=document.querySelector(`#back-button`),t=sessionStorage.getItem(`backUrl`);t&&e&&(e.href=t)}document.addEventListener(`astro:page-load`,e),e();</script><main id="main-content" class="app-layout" data-pagefind-body><h1 style="view-transition-name:adselect" class="text-accent inline-block text-2xl font-bold sm:text-3xl">AdSelect: anatomía de una presunta estafa disfrazada de ingresos por anuncios</h1><div class="my-2 flex items-center gap-2"><div class="text-muted-foreground flex items-center gap-x-2"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="inline-block size-6 min-w-5.5" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" /><path d="M4 7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2zM16 3v4M8 3v4M4 11h16M7 14h.013M10.01 14h.005M13.01 14h.005M16.015 14h.005M13.015 17h.005M7.01 17h.005M10.01 17h.005" /></svg><time class="text-sm sm:text-base" datetime="2026-11-10T04:00:00.000Z">9 Nov, 2026</time></div><span aria-hidden="true" class="text-muted-foreground max-sm:hidden hidden">|</span></div><div class="post-body mt-8"><aside class="toc-side" data-pagefind-ignore><a href="#article" class="toc-skip">Omitir índice de contenidos</a><nav aria-labelledby="toc-side-label" data-toc-nav><h2 id="toc-side-label" class="toc-label">Índice de contenidos</h2><ol><li><a href="#1-contexto-por-qué-considero-que-adselect-era-una-estafa">1. Contexto: por qué considero que AdSelect era una estafa</a></li><li><a href="#2-osint-dominios-y-huellas-públicas">2. OSINT: dominios y huellas públicas</a><ol><li><a href="#21-adselectnet">2.1. adselect.net</a></li><li><a href="#22-wayback-machine">2.2. Wayback Machine</a></li></ol></li><li><a href="#3-por-dentro-un-frontend-que-inspira-poca-confianza">3. Por dentro: un frontend que inspira poca confianza</a><ol><li><a href="#31-tecnología-observada">3.1. Tecnología observada</a></li><li><a href="#32-rutas-en-los-archivos-javascript">3.2. Rutas en los archivos JavaScript</a></li><li><a href="#33-el-antiguo-panel-de-administración-una-fachada-alterable">3.3. El antiguo panel de administración: una fachada alterable</a></li></ol></li><li><a href="#4-análisis-activo-controles-débiles-en-una-plataforma-que-promete-dinero">4. Análisis activo: controles débiles en una plataforma que promete dinero</a></li><li><a href="#5-prueba-de-concepto-fabricar-saldo-es-fácil-cobrarlo-es-otra-historia">5. Prueba de concepto: fabricar saldo es fácil, cobrarlo es otra historia</a></li><li><a href="#6-la-similitud-con-xenpaid-el-mismo-libreto">6. La similitud con XenPaid: el mismo libreto</a></li><li><a href="#7-cambios-de-dominio-y-caída-en-el-día-del-retiro">7. Cambios de dominio y caída en el día del retiro</a></li><li><a href="#8-conclusión-mi-veredicto-sobre-adselect">8. Conclusión: mi veredicto sobre AdSelect</a></li></ol><button type="button" class="toc-back-to-top" data-back-to-top><svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="size-4" viewBox="0 0 24 24" aria-hidden="true"><path stroke="none" d="M0 0h24v24H0z" /><path d="M12 5v14M16 9l-4-4M8 9l4-4" /></svg>Volver arriba</button></nav></aside><script type="module">var e;function t(){e?.(),e=void 0;let t=Array.from(document.querySelectorAll(`[data-toc-nav] a[href^='#']`));if(!t.length)return;let n=[...new Set(t.map(e=>decodeURIComponent(e.hash.slice(1))))].map(e=>document.getElementById(e)).filter(e=>e!==null),r=null,i=0;function a(){i=0;let e=document.documentElement,a=e.scrollTop+innerHeight>=e.scrollHeight-2,o=null;for(let e of n){if(e.getBoundingClientRect().top>96)break;o=e}a&&(o=n[n.length-1]??o);let s=o?.id??null;if(s!==r){r=s;for(let e of t){let t=decodeURIComponent(e.hash.slice(1))===s;t?e.setAttribute(`aria-current`,`true`):e.removeAttribute(`aria-current`);let n=e.closest(`:is(.toc-side, .toc-popover) nav > ol`);if(t&&n&&n.scrollHeight>n.clientHeight){let t=e.offsetTop-n.clientHeight/2,r=matchMedia(`(prefers-reduced-motion: reduce)`).matches;n.scrollTo({top:t,behavior:r?`auto`:`smooth`})}}}}let o=()=>{i||=requestAnimationFrame(a)},s=document.querySelector(`.toc-side [data-back-to-top]`),c=()=>scrollTo(0,0);s?.addEventListener(`click`,c),addEventListener(`scroll`,o,{passive:!0}),addEventListener(`resize`,o),a(),e=()=>{s?.removeEventListener(`click`,c),removeEventListener(`scroll`,o),removeEventListener(`resize`,o),cancelAnimationFrame(i)}}document.addEventListener(`astro:page-load`,t),document.addEventListener(`astro:before-swap`,()=>e?.());</script><article id="article" class="w-full app-prose max-w-app prose-pre:bg-(--shiki-light-bg) dark:prose-pre:bg-(--shiki-dark-bg)"><h1 id="adselect-cuando-los-dólares-del-dashboard-no-llegan-al-bolsillo">AdSelect: cuando los dólares del dashboard no llegan al bolsillo</h1>
+<h2 id="1-contexto-por-qué-considero-que-adselect-era-una-estafa">1. Contexto: por qué considero que AdSelect era una estafa</h2>
+<p>En estos últimos días han aparecido plataformas que prometen hacernos «millonarios» con tareas sencillas. XenPaid ya había dejado a conocidos míos perdiendo el tiempo; después apareció AdSelect, con una propuesta demasiado familiar. En Cuba, donde la necesidad aprieta, una plataforma que promete dólares por mirar anuncios y traer amigos no necesita mucho para volverse popular.</p>
+<p>AdSelect anunciaba <strong>entre 3 y 5 dólares por ver anuncios</strong> y <strong>10 dólares por referido</strong>, además de otras comisiones. Desde el primer momento me olió mal. Después de revisar sus dominios, inspeccionar el frontend, analizar su API y poner a prueba la lógica de referidos, mi valoración es clara: <strong>considero que AdSelect seguía un patrón de estafa, no el de un negocio sostenible y confiable</strong>.</p>
+<p>No baso esa conclusión en un dominio recién registrado ni en que una página esté mal programada. Es la <strong>combinación</strong> de promesas de ingresos, cambios apresurados, controles deficientes, similitudes con XenPaid y, especialmente, la <strong>caída de la plataforma en la fecha anunciada para retirar</strong> lo que termina de dibujar el patrón.</p>
+<blockquote><p><strong>Alcance y cronología:</strong> el análisis técnico corresponde principalmente al <strong>10 y 11 de noviembre de 2026</strong>. Las pruebas del antiguo panel <code>/admin</code> se recuperaron de capturas de una versión anterior. La caída en el día previsto para los retiros es una observación posterior aportada para esta actualización; no se adjunta aquí un registro independiente de disponibilidad o una transacción de retiro fallida. Este artículo es mi evaluación técnica y crítica, no una identificación judicial de los operadores.</p></blockquote>
+<h2 id="2-osint-dominios-y-huellas-públicas">2. OSINT: dominios y huellas públicas</h2>
+<h3 id="21-adselectnet">2.1. <code>adselect.net</code></h3>
+<p>Consulté el historial de <a href="https://who.is/history/adselect.net">Who.is para <code>adselect.net</code></a> y el <a href="https://lookup.icann.org/">buscador de ICANN</a>. En la consulta aparecían estos datos:</p>
+<div class="table-wrapper" tabindex="0">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Campo</th><th>Valor observado</th></tr></thead><tbody><tr><td>Titular</td><td>Oculto mediante un servicio de privacidad</td></tr><tr><td>Registrador</td><td>Namecheap</td></tr><tr><td>Creación del dominio</td><td>7 de diciembre de 2003</td></tr><tr><td>Última actualización</td><td>9 de noviembre de 2026</td></tr><tr><td>Vencimiento</td><td>7 de diciembre de 2027</td></tr><tr><td>Estados</td><td><code>clientHold</code>, <code>clientTransferProhibited</code></td></tr><tr><td>Servidores DNS</td><td>Cloudflare</td></tr></tbody></table></div>
+<p>El dominio existía desde 2003, pero <strong>eso no significa que AdSelect llevara operando desde entonces</strong>. La actualización del 9 de noviembre, justo cuando la plataforma estaba en movimiento, llamó mi atención. Sospecho que el dominio pudo haber sido readquirido o reutilizado recientemente; <strong>la fecha de actualización por sí sola no confirma una compraventa ni un cambio de titular</strong>. Para demostrarlo haría falta un historial registral más completo.</p>
+<p>Los servicios de privacidad y Cloudflare no son sospechosos por sí mismos. El estado <code>clientHold</code>, en cambio, sí puede afectar a la resolución del dominio. Visto junto a la rapidez de los cambios, el historial no transmitía estabilidad.</p>
+<p>En las búsquedas aparecieron nombres parecidos, entre ellos <code>adselect.cc</code>. La semejanza del nombre tampoco prueba una relación. Para este segundo dominio encontré lo siguiente en las consultas de registro:</p>
+<div class="table-wrapper" tabindex="0">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Campo</th><th>Valor observado</th></tr></thead><tbody><tr><td>Creación del dominio</td><td>5 de noviembre de 2026</td></tr><tr><td>Vencimiento</td><td>5 de noviembre de 2027</td></tr><tr><td>Titular</td><td>Oculto mediante PrivacyGuardian.org</td></tr><tr><td>Registrador</td><td>NameSilo, LLC</td></tr><tr><td>Servidores DNS</td><td>Cloudflare</td></tr><tr><td>Estado</td><td><code>clientTransferProhibited</code></td></tr></tbody></table></div>
+<p><code>adselect.cc</code> se había registrado apenas unos días antes de la revisión. No doy por hecha su relación operativa con los otros dominios, pero su aparición alrededor de las mismas fechas reforzó la necesidad de seguir el rastro de nombres y cambios.</p>
+<h3 id="22-wayback-machine">2.2. Wayback Machine</h3>
+<p>Después revisé la <a href="https://web.archive.org/">Wayback Machine</a> para entender cómo se veía el sitio antes de los cambios. La línea de tiempo y la primera captura ayudan a ubicar <strong>qué versión</strong> estamos analizando.</p>
+<p><img alt="Línea de tiempo de capturas de AdSelect en Wayback Machine" loading="lazy" decoding="async" width="1194" height="346" src="/_astro/timeline.BcNCZotu_Z1hFk8z.webp"></p>
+<p><img alt="Primera aparición localizada en el archivo web" loading="lazy" decoding="async" width="1292" height="604" src="/_astro/aparicion.CkW-uwys_GDmME.webp"></p>
+<p>Esta era una de las vistas antiguas del panel:</p>
+<p><img alt="Vista anterior del panel de AdSelect" loading="lazy" decoding="async" width="1296" height="744" src="/_astro/dashboard_old.AM-XqgvD_5R0eG.webp"></p>
+<p>La comparación histórica importa porque <strong>la antigüedad de un dominio no es la antigüedad de este negocio</strong>. Y una captura bonita de un dashboard tampoco demuestra que alguien haya cobrado lo que marca el saldo.</p>
+<h2 id="3-por-dentro-un-frontend-que-inspira-poca-confianza">3. Por dentro: un frontend que inspira poca confianza</h2>
+<p>Lo primero que me chocó del dashboard fue el <strong>tremendo aire a vibecoding</strong>: textos descuidados, detalles de interfaz inconsistentes y una experiencia que parecía construida a toda prisa. No puedo probar que se usara IA para escribir el código, ni sería un problema por sí mismo; mi crítica es que <strong>una plataforma que dice administrar dinero debería demostrar bastante más rigor</strong>. Pero bueno, pongámonos técnicos.</p>
+<p><img alt="Primera captura del dashboard" loading="lazy" decoding="async" width="1293" height="744" src="/_astro/dashboard_1.BHOSlpPj_1rC17h.webp"></p>
+<p><img alt="Segunda captura del dashboard" loading="lazy" decoding="async" width="1116" height="497" src="/_astro/dashboard_2.DgkhQCeU_1t95Gm.webp"></p>
+<h3 id="31-tecnología-observada">3.1. Tecnología observada</h3>
+<p>Al consultar <code>https://adselect.org/</code> con WhatWeb, la respuesta incluía <code>X-Powered-By: Next.js</code>, Cloudflare, el título de la página y la dirección <code>support@adselect.net</code>. El encabezado apunta a <strong>Next.js</strong>; no identifica por sí solo toda la arquitectura del servidor.</p>
+<p>En la consola del navegador, <code>window.next?.version</code> devolvió <code>16.1.6</code> durante la revisión. Esa versión es una observación puntual: puede cambiar con cualquier despliegue.</p>
+<h3 id="32-rutas-en-los-archivos-javascript">3.2. Rutas en los archivos JavaScript</h3>
+<p>Next.js es un <strong>framework de JavaScript</strong>, no un lenguaje. El navegador recibe archivos JavaScript generados a partir del código de la aplicación. Aunque estén empaquetados y cueste leerlos, las rutas usadas por el frontend pueden aparecer allí.</p>
+<p>Abrí las herramientas de desarrollo y busqué <code>/api</code> entre los archivos cargados. Esta es la vista desde la que inicié la búsqueda:</p>
+<p><img alt="Panel del depurador del navegador" loading="lazy" decoding="async" width="503" height="282" src="/_astro/depurador.C4zuBKqC_Z11hxRV.webp"></p>
+<p><img alt="Búsqueda global de rutas API en los archivos cargados" loading="lazy" decoding="async" width="312" height="363" src="/_astro/busqueda_global.DA_JgoT5_1zlLrz.webp"></p>
+<p><img alt="Resultados de una búsqueda local de rutas API" loading="lazy" decoding="async" width="699" height="158" src="/_astro/busqueda_local.C4P8tpuQ_ZecPn0.webp"></p>
+<p>Desde <code>/login</code> y <code>/register</code> aparecieron estas rutas. También probé la enumeración automatizada con <a href="https://github.com/js-recon/js-recon">JSRecon</a>.</p>
+<div class="table-wrapper" tabindex="0">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Ruta encontrada</th><th>Función aparente</th></tr></thead><tbody><tr><td><code>/api/auth/forgot</code></td><td>Recuperación de cuenta</td></tr><tr><td><code>/api/auth/forgot-id</code></td><td>Recuperación del identificador de usuario</td></tr><tr><td><code>/api/auth/login</code></td><td>Inicio de sesión</td></tr><tr><td><code>/api/auth/me</code></td><td>Consulta de sesión</td></tr><tr><td><code>/api/auth/register</code></td><td>Registro</td></tr><tr><td><code>/api/auth/register-paid</code></td><td>Registro asociado a pago</td></tr><tr><td><code>/api/auth/register-paid/invoice</code></td><td>Factura del registro de pago</td></tr><tr><td><code>/api/auth/register-paid/proof</code></td><td>Comprobante del registro de pago</td></tr><tr><td><code>/api/auth/username-check</code></td><td>Disponibilidad del nombre de usuario</td></tr><tr><td><code>/api/brand</code></td><td>Datos de marca o configuración</td></tr><tr><td><code>/api/checkout/status</code></td><td>Estado del proceso de cobro o retiro</td></tr><tr><td><code>/api/pixel-log</code></td><td>Registro de eventos</td></tr><tr><td><code>/api/public/registration-mode</code></td><td>Modo de registro</td></tr><tr><td><code>/api/public/sponsor</code></td><td>Datos del patrocinador</td></tr></tbody></table></div>
+<p>La exposición de rutas no es automáticamente una vulnerabilidad; sí ayuda a reconstruir cómo trabaja el sistema. Días antes, <code>/admin</code> también revelaba parte de la lógica de la vista administrativa, que recupero a continuación porque ilustra <strong>el contraste entre la apariencia de plataforma financiera y lo improvisado de algunas decisiones del frontend</strong>. Vale la pena recuperar aquella observación porque ayuda a entender cómo estaba construida la interfaz original.</p>
+<h3 id="33-el-antiguo-panel-de-administración-una-fachada-alterable">3.3. El antiguo panel de administración: una fachada alterable</h3>
+<blockquote><p><strong>Nota sobre la evidencia histórica:</strong> lo que sigue reconstruye una prueba realizada contra una versión anterior de AdSelect a partir de notas y capturas conservadas. <strong>Ese comportamiento ya no estaba disponible para repetirlo durante la revisión posterior</strong>, después de los cambios del sitio. Por tanto, esta sección explica cómo funcionaba la interfaz en aquel momento, no cómo funciona la plataforma actualmente. Las capturas enlazadas documentan la prueba original; no deben interpretarse como evidencia de acceso administrativo vigente.</p></blockquote>
+<p>Al revisar los archivos JavaScript observé una ruta <code>/admin</code> y una lógica de comprobación de sesión. Según la versión analizada, la interfaz consultaba el endpoint de sesión —identificado en la enumeración como <code>/api/auth/me</code>— y utilizaba el campo <code>role</code> para decidir qué pantalla mostrar. Si el usuario no tenía el rol esperado, el navegador terminaba redirigiéndolo fuera de la vista administrativa.</p>
+<p>Había un detalle interesante: <strong>el código de esa pantalla llegaba al navegador antes de que se completara la decisión de redirección</strong>. Eso permitía estudiar la interfaz sin necesidad de demostrar que el servidor concediera permisos de administrador.</p>
+<p>Para comprobarlo utilicé la función <strong>Match and Replace de Burp Suite</strong>, que permite sustituir partes de las respuestas HTTP mientras pasan por el proxy. En esta prueba, el objetivo no era modificar la cuenta en el servidor, sino observar qué ocurría cuando el frontend recibía una respuesta de sesión con un valor diferente en el campo del rol.</p>
+<p>El flujo fue el siguiente:</p>
+<ol>
+<li>Accedí a la ruta <code>/admin</code> con una sesión ordinaria.</li>
+<li>La aplicación consultó los datos de la sesión y la respuesta indicaba el rol <code>member</code>.</li>
+<li>Configuré Match and Replace para que, en la respuesta entregada al navegador, el valor del rol apareciera como <code>admin</code>.</li>
+<li>Al recibir esa respuesta modificada, el frontend permitió visualizar la pantalla administrativa que anteriormente no llegaba a mostrarse de forma estable.</li>
+</ol>
+<p>Esta es la configuración de sustitución conservada de aquella prueba:</p>
+<p><img alt="Configuración de Match and Replace utilizada en la prueba" loading="lazy" decoding="async" width="262" height="392" src="/_astro/match_and_replace.DHzg_eRF_1qVJB8.webp"></p>
+<p>Para comparar lo ocurrido, primero está la respuesta <strong>sin modificar</strong>, con el rol original:</p>
+<p><img alt="Respuesta original de sesión antes de aplicar Match and Replace" loading="lazy" decoding="async" width="485" height="614" src="/_astro/respueta_sin_match_replace.Bt2g6cf0_Z2n2AtK.webp"></p>
+<p>Y después la respuesta <strong>modificada localmente</strong> por el proxy:</p>
+<p><img alt="Respuesta de sesión alterada mediante Match and Replace" loading="lazy" decoding="async" width="461" height="613" src="/_astro/respuesta_con_match_replace.C05Hyu18_1vH4z2.webp"></p>
+<p>El resultado fue esta vista del antiguo dashboard de administración:</p>
+<p><img alt="Vista histórica del panel de administración de AdSelect" loading="lazy" decoding="async" width="1080" height="541" src="/_astro/admin_dashboard.yoaGhpjZ_TBKwV.webp"></p>
+<p>Aquí está la distinción clave: <strong>pude visualizar una pantalla administrativa, pero no acceder a sus funcionalidades privilegiadas</strong>. El cambio se realizó sobre la respuesta que veía el navegador; no hay evidencia de que se alterara el rol almacenado en el servidor ni de que las API administrativas aceptaran operaciones no autorizadas.</p>
+<p>El resultado deja en evidencia una decisión de diseño poco cuidada: <strong>la visualización del panel dependía de un valor controlable en la respuesta recibida por el navegador</strong>. No obtuve acceso real a funciones administrativas ni demostré escalada de privilegios; el backend podía conservar sus propias comprobaciones. Pero exhibir así una consola interna no es precisamente lo que esperaba de una plataforma que pretendía gestionar saldos y pagos.</p>
+<h4 id="331-los-textos-del-panel-otra-señal-de-improvisación">3.3.1. Los textos del panel: otra señal de improvisación</h4>
+<p>Dentro de aquella vista encontré expresiones en inglés poco naturales y giros que me recordaron al inglés utilizado en la India. Conservo las capturas porque forman parte de la investigación histórica y muestran el <strong>escaso cuidado editorial y la falta de coherencia lingüística</strong> de esa interfaz.</p>
+<p><img alt="Expresiones observadas en la antigua interfaz administrativa" loading="lazy" decoding="async" width="301" height="538" src="/_astro/textos_indish.DRduo4_5_243KQv.webp"></p>
+<p><img alt="Más textos inconsistentes del antiguo panel" loading="lazy" decoding="async" width="280" height="508" src="/_astro/textos_indish_2.CiSgQLui_Zvlwqu.webp"></p>
+<p>No voy a atribuir la estafa a personas de una nacionalidad determinada: <strong>escribir en inglés con rasgos regionales no demuestra quién creó el sitio ni que su autor sea un estafador</strong>. La crítica relevante es otra: había textos extraños, una interfaz administrativa expuesta en el cliente y señales de un producto ensamblado con poca revisión.</p>
+<p>La versión de la que salen estas capturas <strong>ya no estaba accesible en la revisión posterior</strong>. Por eso las presento como evidencia histórica de cómo se veía la aplicación, no como una vulnerabilidad vigente.</p>
+<h2 id="4-análisis-activo-controles-débiles-en-una-plataforma-que-promete-dinero">4. Análisis activo: controles débiles en una plataforma que promete dinero</h2>
+<p>Al observar las solicitudes en Burp Suite aparecieron tres comportamientos preocupantes. En un sitio que gestiona cuentas y supuestas recompensas, <strong>los controles de negocio importan tanto como los de seguridad</strong>:</p>
+<ol>
+<li><strong>Recuperación de contraseña.</strong> El flujo parecía pedir correo y número de teléfono para cambiar la contraseña. Si ambos datos bastan y no hay una verificación adicional, podría existir un problema de toma de cuentas. La captura muestra el flujo observado, pero no prueba por sí sola que se pueda tomar una cuenta ajena.</li>
+</ol>
+<p><img alt="Solicitud observada en el flujo de recuperación de contraseña" loading="lazy" decoding="async" width="926" height="570" src="/_astro/forgot.C3t4JqgD_sVn8o.webp"></p>
+<ol start="2">
+<li><strong>Recuperación del identificador.</strong> La respuesta de <code>forgot-id</code> parecía revelar datos parcialmente ocultos. El riesgo depende de qué campos se puedan consultar, cuántas consultas admite y cuánta información deja reconstruir.</li>
+</ol>
+<p><img alt="Primera respuesta del flujo forgot-id" loading="lazy" decoding="async" width="941" height="574" src="/_astro/forgot-id-1.DbhJHimQ_Z1xrmsS.webp"></p>
+<p><img alt="Segunda respuesta del flujo forgot-id" loading="lazy" decoding="async" width="932" height="553" src="/_astro/forgot-id-2.uuMlFgVk_Z2nUIQh.webp"></p>
+<ol start="3">
+<li><strong>Registro y referidos.</strong> El formulario permitía repetir solicitudes de registro. Si el sistema acredita bonos por cuentas ficticias sin controles suficientes, el contador de ingresos podría inflarse. La limitación de Cloudflare reduce la velocidad de las solicitudes; no valida que cada cuenta corresponda a una persona distinta.</li>
+</ol>
+<p><img alt="Solicitud de registro observada" loading="lazy" decoding="async" width="933" height="579" src="/_astro/register.Bz4BV0kS_1ux1pM.webp"></p>
+<h2 id="5-prueba-de-concepto-fabricar-saldo-es-fácil-cobrarlo-es-otra-historia">5. Prueba de concepto: fabricar saldo es fácil, cobrarlo es otra historia</h2>
+<p>Para explorar el caso de los referidos utilicé <a href="https://github.com/RojoFW/M.A.C.A.C.O">M.A.C.A.C.O</a>, una herramienta que desarrollé para repetir solicitudes POST a partir de una plantilla. La idea era comprobar si el panel acreditaba bonos al crear cuentas asociadas a un mismo patrocinador.</p>
+<p>La captura siguiente muestra el <strong>saldo que presentó la interfaz</strong> después de la prueba:</p>
+<p><img alt="Saldo mostrado en el panel después de la prueba de referidos" loading="lazy" decoding="async" width="558" height="1280" src="/_astro/ingresos.DQoC_B7t_24vBeO.webp"></p>
+<p>Y listo, ¿tenemos <strong>470 dólares</strong>? Jeje… si realmente fuese tan fácil. <strong>Solo faltaría «retirarlos».</strong></p>
+<p>Esa fue precisamente la parte más reveladora: el sistema podía mostrar recompensas originadas por registros repetidos, pero <strong>un saldo en una base de datos no equivale a dinero disponible ni a un retiro real</strong>. La prueba muestra una debilidad aparente en el cómputo de referidos; no demuestra que se completara un cobro y tampoco permite saber si el backend anularía después esos registros.</p>
+<p>Aun con esa limitación, el resultado es grave desde el punto de vista de la confianza: si una plataforma promete pagos por referidos, <strong>debería validar seriamente a quién recompensa</strong>. Aquí la cifra del dashboard crecía mucho más fácilmente de lo que se podía verificar su legitimidad.</p>
+<h2 id="6-la-similitud-con-xenpaid-el-mismo-libreto">6. La similitud con XenPaid: el mismo libreto</h2>
+<p>El parecido visual y funcional con <strong>XenPaid</strong>, una plataforma anterior que ya no estaba disponible durante mi revisión, fue otra alarma. Mi impresión es que AdSelect retomaba el mismo libreto: anuncios, recompensas, referidos y la expectativa de acumular dinero que supuestamente se podría retirar después.</p>
+<p><img alt="Comparativa pendiente: dashboard de XenPaid frente al de AdSelect" loading="lazy" decoding="async" width="2172" height="724" src="/_astro/comparativa_adselect_xenpaid.7XXyqZxa_2o9oif.webp"></p>
+<p>No necesito afirmar que los dos sitios pertenecían a las mismas personas para considerarlo relevante. Mi crítica va al <strong>modelo que se repetía</strong> y a la ausencia de una explicación convincente sobre la procedencia del dinero que se prometía repartir.</p>
+<h2 id="7-cambios-de-dominio-y-caída-en-el-día-del-retiro">7. Cambios de dominio y caída en el día del retiro</h2>
+<p>Mientras preparaba la investigación dejé de poder acceder a <code>adselect.net</code> y encontré la página en <code>adselect.org</code>. El registro de <code>.org</code> indicaba creación y actualización el <strong>10 de noviembre de 2026 a las 02:53 UTC</strong>, con Namecheap como registrador, Cloudflare como DNS y estados <code>clientTransferProhibited</code> y <code>addPeriod</code>.</p>
+<p>El <strong>11 de noviembre</strong> la página ya había cambiado drásticamente y parecía estar montada en WordPress. Pasar de la versión inspeccionada con Next.js a otra presentación, al mismo tiempo que se cambiaban dominios, no proyectaba precisamente estabilidad.</p>
+<p>Pero para mí la señal decisiva llegó después: <strong>según lo observado, AdSelect dejó de funcionar justamente el día previsto, (Hoy 12 de noviembre) para los retiros</strong>. Durante la etapa de acumulación de supuestas ganancias, el saldo estaba ahí para generar expectativas; cuando tocaba comprobar que esos números se podían convertir en dinero, la plataforma ya no estaba disponible.</p>
+<p>Ese desenlace <strong>encaja con un patrón de fraude por recompensas ficticias</strong>: se atraen usuarios con ganancias aparentes, se incentivan los referidos y el sistema deja de responder cuando llega el momento de pagar. En este artículo no presento una prueba de transferencia fallida ni registros técnicos de disponibilidad de esa fecha; describo la caída reportada y explico por qué, unida al resto de hallazgos, pesa tanto en mi valoración.</p>
+<h2 id="8-conclusión-mi-veredicto-sobre-adselect">8. Conclusión: mi veredicto sobre AdSelect</h2>
+<p><strong>Para mí, AdSelect fue una estafa.</strong> No llego a esa conclusión por una frase mal traducida, porque use Next.js o porque el dominio tenga privacidad. Llego por la acumulación de hechos y observaciones:</p>
+<ol>
+<li><strong>Dominios e infraestructura inestables.</strong> Un dominio antiguo actualizado recientemente, otro recién registrado y una migración visible en cuestión de días. La supuesta readquisición de <code>adselect.net</code> es una hipótesis, no un hecho demostrado.</li>
+<li><strong>Lógica de negocio floja.</strong> Los flujos de recuperación, registro y referidos mostraron deficiencias o condiciones que justificaban una seria desconfianza para una plataforma que decía manejar dinero.</li>
+<li><strong>Producto improvisado.</strong> Interfaz inconsistente, panel administrativo que se podía visualizar cambiando una respuesta en el navegador y similitudes llamativas con XenPaid; esto último no demuestra operadores compartidos.</li>
+<li><strong>Ganancias que existían, sobre todo, en pantalla.</strong> La prueba de referidos permitió ver crecer el saldo aparente sin documentar un retiro efectivo.</li>
+<li><strong>El momento del desplome.</strong> La plataforma dejó de estar disponible, según la observación recogida, precisamente cuando correspondía comprobar los retiros.</li>
+</ol></article></div><hr class="my-8 border-dashed"><div id="post-fab" class="post-fab" data-pagefind-ignore><button type="button" class="post-fab-btn" aria-label="Índice de contenidos" popovertarget="toc-popover" data-has-toc><span class="post-fab-progress" aria-hidden="true"></span><svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="post-fab-icon-toc size-6" viewBox="0 0 24 24" aria-hidden="true"><path stroke="none" d="M0 0h24v24H0z" /><path d="M9 6h11M12 12h8M15 18h5M5 6v.01M8 12v.01M11 18v.01" /></svg><svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="post-fab-icon-close size-6" viewBox="0 0 24 24" aria-hidden="true"><path stroke="none" d="M0 0h24v24H0z" /><path d="M18 6 6 18M6 6l12 12" /></svg><svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="post-fab-icon-top size-6" viewBox="0 0 24 24" aria-hidden="true"><path stroke="none" d="M0 0h24v24H0z" /><path d="M12 5v14M16 9l-4-4M8 9l4-4" /></svg></button></div><div id="toc-popover" class="toc-popover" popover data-pagefind-ignore><nav aria-labelledby="toc-popover-label" data-toc-nav><h2 id="toc-popover-label" class="toc-label">Índice de contenidos</h2><ol><li><a href="#1-contexto-por-qué-considero-que-adselect-era-una-estafa">1. Contexto: por qué considero que AdSelect era una estafa</a></li><li><a href="#2-osint-dominios-y-huellas-públicas">2. OSINT: dominios y huellas públicas</a><ol><li><a href="#21-adselectnet">2.1. adselect.net</a></li><li><a href="#22-wayback-machine">2.2. Wayback Machine</a></li></ol></li><li><a href="#3-por-dentro-un-frontend-que-inspira-poca-confianza">3. Por dentro: un frontend que inspira poca confianza</a><ol><li><a href="#31-tecnología-observada">3.1. Tecnología observada</a></li><li><a href="#32-rutas-en-los-archivos-javascript">3.2. Rutas en los archivos JavaScript</a></li><li><a href="#33-el-antiguo-panel-de-administración-una-fachada-alterable">3.3. El antiguo panel de administración: una fachada alterable</a></li></ol></li><li><a href="#4-análisis-activo-controles-débiles-en-una-plataforma-que-promete-dinero">4. Análisis activo: controles débiles en una plataforma que promete dinero</a></li><li><a href="#5-prueba-de-concepto-fabricar-saldo-es-fácil-cobrarlo-es-otra-historia">5. Prueba de concepto: fabricar saldo es fácil, cobrarlo es otra historia</a></li><li><a href="#6-la-similitud-con-xenpaid-el-mismo-libreto">6. La similitud con XenPaid: el mismo libreto</a></li><li><a href="#7-cambios-de-dominio-y-caída-en-el-día-del-retiro">7. Cambios de dominio y caída en el día del retiro</a></li><li><a href="#8-conclusión-mi-veredicto-sobre-adselect">8. Conclusión: mi veredicto sobre AdSelect</a></li></ol><button type="button" class="toc-back-to-top" data-back-to-top><svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="size-4" viewBox="0 0 24 24" aria-hidden="true"><path stroke="none" d="M0 0h24v24H0z" /><path d="M12 5v14M16 9l-4-4M8 9l4-4" /></svg>Volver arriba</button></nav></div><script type="module">var e;function t(){e?.(),e=void 0;let t=document.documentElement,n=document.getElementById(`post-fab`),r=n?.querySelector(`button`),i=n?.querySelector(`.post-fab-progress`),a=document.getElementById(`toc-popover`),o=document.querySelector(`.toc-side > nav`);if(!n||!r||!i)return;let s=()=>{t.scrollTop=0,document.body.scrollTop=0},c=r.hasAttribute(`data-has-toc`),l=()=>{c||s()},u=()=>{a?.hidePopover&&a.matches(`:popover-open`)&&a.hidePopover()},d=e=>{let t=e.target;t.closest(`.toc-popover [data-back-to-top]`)?(s(),u()):t.closest(`.toc-popover a`)&&u()},f=e=>{let t=a?.querySelector(`nav > ol`);if(e.newState!==`open`||!t)return;let n=t.querySelector(`[aria-current]`);n&&t.scrollHeight>t.clientHeight&&(t.scrollTop=n.offsetTop-t.clientHeight/2)},p=null,m=0;function h(){m=0,n.toggleAttribute(`data-side-toc-hidden`,o?.offsetWidth===0),n.offsetWidth===0&&u();let e=t.scrollHeight-t.clientHeight,r=e>0?t.scrollTop/e:0;i.style.setProperty(`--progress`,`${r*100}%`);let a=c||r>.3;a!==p&&(n.toggleAttribute(`data-visible`,a),p=a)}let g=()=>{m||=requestAnimationFrame(h)};r.addEventListener(`click`,l),document.addEventListener(`click`,d),a?.addEventListener(`toggle`,f),addEventListener(`scroll`,g,{passive:!0}),addEventListener(`resize`,g),h(),e=()=>{r.removeEventListener(`click`,l),document.removeEventListener(`click`,d),a?.removeEventListener(`toggle`,f),removeEventListener(`scroll`,g),removeEventListener(`resize`,g),cancelAnimationFrame(m)}}document.addEventListener(`astro:page-load`,t),document.addEventListener(`astro:before-swap`,()=>e?.());</script><div class="sm:my-8 sm:flex sm:items-start sm:justify-between sm:gap-8"><div class="mt-4 mb-8 flex items-start justify-between gap-4 sm:my-0"><ul class="flex flex-wrap gap-4"><li><a data-astro-transition-scope="astro-bztu2lml-1" href="/tags/phishing/" class="flex items-center gap-0.5 border-foreground border-b-2 border-dashed hover:border-accent hover:text-accent hover:-mt-0.5 focus-visible:text-accent focus-visible:border-none text-sm"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="opacity-80 size-4" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" /><path d="M5 9h14M5 15h14M11 4 7 20M17 4l-4 16" /></svg>phishing</a></li><li><a data-astro-transition-scope="astro-bztu2lml-2" href="/tags/estafa/" class="flex items-center gap-0.5 border-foreground border-b-2 border-dashed hover:border-accent hover:text-accent hover:-mt-0.5 focus-visible:text-accent focus-visible:border-none text-sm"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="opacity-80 size-4" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" /><path d="M5 9h14M5 15h14M11 4 7 20M17 4l-4 16" /></svg>estafa</a></li><li><a data-astro-transition-scope="astro-bztu2lml-3" href="/tags/pentesting/" class="flex items-center gap-0.5 border-foreground border-b-2 border-dashed hover:border-accent hover:text-accent hover:-mt-0.5 focus-visible:text-accent focus-visible:border-none text-sm"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="opacity-80 size-4" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" /><path d="M5 9h14M5 15h14M11 4 7 20M17 4l-4 16" /></svg>pentesting</a></li></ul></div><div class="flex flex-none flex-col items-center justify-center gap-1 sm:items-end"><span class="italic">Compartir esta investigación:</span><div class="text-center"><a href="https://wa.me/?text=https://rojofw.github.io/posts/adselect/" title="Compartir en Whatsapp" target="_blank" rel="noopener noreferrer" class="group inline-flex items-center gap-1 hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" /><path d="m3 21 1.65-3.8a9 9 0 1 1 3.4 2.9z" /><path d="M9 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0-1 0za5 5 0 0 0 5 5h1a.5.5 0 0 0 0-1h-1a.5.5 0 0 0 0 1" /></svg><span class="sr-only">Compartir en Whatsapp</span></a><a href="https://www.facebook.com/sharer.php?u=https://rojofw.github.io/posts/adselect/" title="Compartir en Facebook" target="_blank" rel="noopener noreferrer" class="group inline-flex items-center gap-1 hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" /><path d="M7 10v4h3v7h4v-7h3l1-4h-4V8a1 1 0 0 1 1-1h3V3h-3a5 5 0 0 0-5 5v2z" /></svg><span class="sr-only">Compartir en Facebook</span></a><a href="https://x.com/intent/post?url=https://rojofw.github.io/posts/adselect/" title="Compartir en X" target="_blank" rel="noopener noreferrer" class="group inline-flex items-center gap-1 hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" /><path d="m4 4 11.733 16H20L8.267 4zM4 20l6.768-6.768m2.46-2.46L20 4" /></svg><span class="sr-only">Compartir en X</span></a><a href="https://t.me/share/url?url=https://rojofw.github.io/posts/adselect/" title="Compartir en Telegram" target="_blank" rel="noopener noreferrer" class="group inline-flex items-center gap-1 hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" /><path d="m15 10-4 4 6 6 4-16-18 7 4 2 2 6 3-4" /></svg><span class="sr-only">Compartir en Telegram</span></a><a href="https://pinterest.com/pin/create/button/?url=https://rojofw.github.io/posts/adselect/" title="Compartir en Pinterest" target="_blank" rel="noopener noreferrer" class="group inline-flex items-center gap-1 hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" /><path d="m8 20 4-9M10.7 14c.437 1.263 1.43 2 2.55 2 2.071 0 3.75-1.554 3.75-4a5 5 0 1 0-9.7 1.7" /><path d="M3 12a9 9 0 1 0 18 0 9 9 0 1 0-18 0" /></svg><span class="sr-only">Compartir en Pinterest</span></a><a href="mailto:?subject=See%20this%20post&amp;body=https://rojofw.github.io/posts/adselect/" title="Compartir por correo electrónico" target="_blank" rel="noopener noreferrer" class="group inline-flex items-center gap-1 hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" /><path d="M3 7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" /><path d="m3 7 9 6 9-6" /></svg><span class="sr-only">Compartir por correo electrónico</span></a></div></div></div><hr class="my-8 border-dashed"><div data-pagefind-ignore class="my-8 grid grid-cols-1 gap-6 sm:grid-cols-2"></div></main><footer class="app-layout mt-auto"><div class="border-border flex flex-col items-center justify-between gap-4 border-t py-6 sm:flex-row sm:py-5"><!-- IDENTIDAD Y COPYRIGHT --><p class="text-muted-foreground text-xs leading-relaxed">Derechos de autor &#169; 2026<span class="mx-1">·</span>Todos los derechos reservados.</p><!-- RSS --><div class="flex flex-wrap items-center justify-center gap-4 sm:justify-end"><!-- RSS --><a href="/rss.xml" target="_blank" rel="noopener noreferrer" class="focus-outline text-foreground hover:text-accent inline-flex items-center justify-center transition-colors duration-200" aria-label="Suscribirse al RSS" title="Suscribirse al RSS"><svg width="21" height="21" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="icon icon-tabler icons-tabler-outline icon-tabler-rss" viewBox="0 0 24 24" aria-hidden="true"><path stroke="none" d="M0 0h24v24H0z" /><path d="M4 19a1 1 0 1 0 2 0 1 1 0 1 0-2 0M4 4a16 16 0 0 1 16 16M4 11a9 9 0 0 1 9 9" /></svg><span class="sr-only">Suscribirse al RSS</span></a></div></div></footer></div></div><script type="module">var e=`theme`,t=`light`,n=`dark`;function r(){return localStorage.getItem(e)||(window.matchMedia(`(prefers-color-scheme: dark)`).matches?n:t)}var i=window.__theme?.value??r();function a(){localStorage.setItem(e,i),o()}function o(){let e=document.firstElementChild;e?.setAttribute(`data-theme`,i),e?.classList.toggle(`dark`,i===n),document.querySelector(`#theme-btn`)?.setAttribute(`aria-label`,i);let t=window.getComputedStyle(document.body).backgroundColor;document.querySelector(`meta[name='theme-color']`)?.setAttribute(`content`,t)}function s(){o(),document.querySelector(`#theme-btn`)?.addEventListener(`click`,()=>{i=i===t?n:t,a()})}s(),document.addEventListener(`astro:after-swap`,s),document.addEventListener(`astro:before-swap`,e=>{let t=document.querySelector(`meta[name='theme-color']`)?.getAttribute(`content`);t&&e.newDocument.querySelector(`meta[name='theme-color']`)?.setAttribute(`content`,t)}),window.matchMedia(`(prefers-color-scheme: dark)`).addEventListener(`change`,({matches:e})=>{i=e?n:t,a()});</script></body></html><script data-astro-rerun>
+  function createProgressBar() {
+    const progressContainer = document.createElement("div");
+    progressContainer.className =
+      "progress-container fixed top-0 z-10 h-1 w-full bg-background";
+
+    const progressBar = document.createElement("div");
+    progressBar.className = "progress-bar h-1 w-0 bg-accent";
+    progressBar.id = "myBar";
+
+    progressContainer.appendChild(progressBar);
+    document.body.appendChild(progressContainer);
+  }
+  createProgressBar();
+
+  function updateScrollProgress() {
+    document.addEventListener("scroll", () => {
+      const winScroll =
+        document.body.scrollTop || document.documentElement.scrollTop;
+      const height =
+        document.documentElement.scrollHeight -
+        document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      if (document) {
+        const myBar = document.getElementById("myBar");
+        if (myBar) {
+          myBar.style.width = scrolled + "%";
+        }
+      }
+    });
+  }
+  updateScrollProgress();
+
+  function addHeadingLinks() {
+    const headings = Array.from(
+      document.querySelectorAll("#article :is(h2, h3, h4, h5, h6)")
+    );
+    for (const heading of headings) {
+      heading.classList.add("group");
+      const link = document.createElement("a");
+      link.className =
+        "heading-link ms-2 no-underline opacity-75 md:opacity-0 md:group-hover:opacity-100 md:focus:opacity-100";
+      link.href = "#" + heading.id;
+
+      const span = document.createElement("span");
+      span.ariaHidden = "true";
+      span.innerText = "#";
+      link.appendChild(span);
+      heading.appendChild(link);
+    }
+  }
+  addHeadingLinks();
+
+  function attachCopyButtons() {
+    const copyButtonLabel = "Copy";
+    const codeBlocks = Array.from(document.querySelectorAll("pre"));
+
+    for (const codeBlock of codeBlocks) {
+      const wrapper = document.createElement("div");
+      wrapper.style.position = "relative";
+
+      const computedStyle = getComputedStyle(codeBlock);
+      const hasFileNameOffset =
+        computedStyle.getPropertyValue("--file-name-offset").trim() !== "";
+
+      const topClass = hasFileNameOffset
+        ? "top-(--file-name-offset)"
+        : "-top-3";
+
+      const copyButton = document.createElement("button");
+      copyButton.className = `copy-code absolute end-3 ${topClass} rounded bg-muted border border-muted px-2 py-1 text-xs leading-4 text-foreground font-medium`;
+      copyButton.innerHTML = copyButtonLabel;
+      codeBlock.setAttribute("tabindex", "0");
+      codeBlock.appendChild(copyButton);
+
+      codeBlock?.parentNode?.insertBefore(wrapper, codeBlock);
+      wrapper.appendChild(codeBlock);
+
+      copyButton.addEventListener("click", async () => {
+        await copyCode(codeBlock, copyButton);
+      });
+    }
+
+    async function copyCode(block, button) {
+      const code = block.querySelector("code");
+      const text = code?.innerText;
+
+      await navigator.clipboard.writeText(text ?? "");
+
+      button.innerText = "Copied";
+
+      setTimeout(() => {
+        button.innerText = copyButtonLabel;
+      }, 700);
+    }
+  }
+  attachCopyButtons();
+
+  /** Accessible image lightbox for article images. */
+  function initLightbox() {
+    const article = document.getElementById("article");
+    if (!article) return;
+
+    const prefersReducedMotion = () =>
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    let overlay = null;
+    let lastFocused = null;
+    let removeDragListeners = null;
+
+    // Defer attribute mutations so they don't push the LCP timestamp.
+    // Event listeners below use delegation and don't need the attributes to exist yet.
+    requestAnimationFrame(() => {
+      const images = Array.from(article.querySelectorAll("img"));
+      for (const image of images) {
+        if (image.closest("a")) continue;
+        image.setAttribute("role", "button");
+        image.setAttribute("tabindex", "0");
+        image.setAttribute("aria-haspopup", "dialog");
+        image.setAttribute(
+          "aria-label",
+          image.alt ? `Zoom image: ${image.alt}` : "Zoom image"
+        );
+      }
+    });
+
+    function open(src, alt, trigger) {
+      if (overlay) return;
+      lastFocused = trigger ?? document.activeElement;
+
+      overlay = document.createElement("div");
+      overlay.setAttribute("role", "dialog");
+      overlay.setAttribute("aria-modal", "true");
+      overlay.setAttribute(
+        "aria-label",
+        alt ? `Image preview: ${alt}` : "Image preview"
+      );
+      overlay.className =
+        "fixed inset-0 z-50 flex cursor-zoom-out items-center justify-center bg-black/70 backdrop-blur-sm opacity-0 transition-opacity duration-200 motion-reduce:transition-none";
+
+      const closeButton = document.createElement("button");
+      closeButton.type = "button";
+      closeButton.setAttribute("aria-label", "Close image preview");
+      closeButton.className =
+        "absolute end-4 top-4 z-1 flex size-11 items-center justify-center rounded bg-black/50 text-3xl leading-none text-white";
+      closeButton.innerHTML = "&#10005;";
+      closeButton.addEventListener("click", close);
+
+      const image = document.createElement("img");
+      image.src = src;
+      image.alt = "";
+      image.className =
+        "max-h-[90dvh] max-w-[90dvw] cursor-default object-contain transition-transform duration-100 ease-out motion-reduce:transition-none data-[zoom=drag]:cursor-grabbing data-[zoom=drag]:transition-none data-[zoom=in]:cursor-grab";
+
+      overlay.append(closeButton, image);
+      overlay.addEventListener("click", e => {
+        if (e.target === overlay && currentScale <= 1) close();
+      });
+
+      let currentScale = 1;
+      let translateX = 0;
+      let translateY = 0;
+      let initialDist = 0;
+      let initialScale = 1;
+      let panStartX = 0;
+      let panStartY = 0;
+      let panStartTranslateX = 0;
+      let panStartTranslateY = 0;
+      let lastTapTime = 0;
+
+      function applyTransform() {
+        image.style.transform = `scale(${currentScale}) translate(${translateX}px, ${translateY}px)`;
+        // A backdrop click only closes at fit size, so drop the zoom-out cursor while zoomed.
+        overlay?.classList.toggle("cursor-zoom-out", currentScale <= 1);
+      }
+
+      function resetTransform() {
+        currentScale = 1;
+        translateX = 0;
+        translateY = 0;
+        image.style.transform = "";
+        image.removeAttribute("data-zoom");
+        overlay?.classList.add("cursor-zoom-out");
+      }
+
+      // Keep the zoomed image from being panned past its edges.
+      function clampTranslate() {
+        if (!overlay) return;
+        const maxX = Math.max(
+          0,
+          (image.clientWidth - overlay.clientWidth / currentScale) / 2
+        );
+        const maxY = Math.max(
+          0,
+          (image.clientHeight - overlay.clientHeight / currentScale) / 2
+        );
+        translateX = Math.min(maxX, Math.max(-maxX, translateX));
+        translateY = Math.min(maxY, Math.max(-maxY, translateY));
+      }
+
+      overlay.addEventListener(
+        "touchstart",
+        e => {
+          const t = e.touches;
+          if (t.length === 2) {
+            image.setAttribute("data-zoom", "drag");
+            initialDist = Math.hypot(
+              t[1].clientX - t[0].clientX,
+              t[1].clientY - t[0].clientY
+            );
+            initialScale = currentScale;
+          } else if (t.length === 1) {
+            const now = Date.now();
+            if (now - lastTapTime < 300) {
+              e.preventDefault();
+              if (currentScale > 1) {
+                resetTransform();
+              } else {
+                currentScale = 2;
+                translateX = 0;
+                translateY = 0;
+                applyTransform();
+                image.setAttribute("data-zoom", "in");
+              }
+              lastTapTime = 0;
+              panStartX = t[0].clientX;
+              panStartY = t[0].clientY;
+              panStartTranslateX = translateX;
+              panStartTranslateY = translateY;
+            } else {
+              lastTapTime = now;
+              if (currentScale > 1) {
+                image.setAttribute("data-zoom", "drag");
+                panStartX = t[0].clientX;
+                panStartY = t[0].clientY;
+                panStartTranslateX = translateX;
+                panStartTranslateY = translateY;
+              }
+            }
+          }
+        },
+        { passive: false }
+      );
+
+      overlay.addEventListener(
+        "touchmove",
+        e => {
+          const t = e.touches;
+          if (t.length === 2) {
+            e.preventDefault();
+            const dist = Math.hypot(
+              t[1].clientX - t[0].clientX,
+              t[1].clientY - t[0].clientY
+            );
+            const oldScale = currentScale;
+            currentScale = Math.min(
+              4,
+              Math.max(1, initialScale * (dist / initialDist))
+            );
+
+            // Zoom to the geometric center of the two fingers
+            const midX = (t[0].clientX + t[1].clientX) / 2;
+            const midY = (t[0].clientY + t[1].clientY) / 2;
+            const ox = overlay.clientWidth / 2;
+            const oy = overlay.clientHeight / 2;
+            translateX =
+              (midX - ox) * (1 / currentScale - 1 / oldScale) + translateX;
+            translateY =
+              (midY - oy) * (1 / currentScale - 1 / oldScale) + translateY;
+            clampTranslate();
+            applyTransform();
+          } else if (t.length === 1) {
+            if (currentScale > 1) {
+              e.preventDefault();
+              image.setAttribute("data-zoom", "drag");
+              translateX =
+                panStartTranslateX + (t[0].clientX - panStartX) / currentScale;
+              translateY =
+                panStartTranslateY + (t[0].clientY - panStartY) / currentScale;
+              clampTranslate();
+              applyTransform();
+            } else {
+              e.preventDefault();
+            }
+          }
+        },
+        { passive: false }
+      );
+
+      overlay.addEventListener("touchend", e => {
+        if (e.touches.length === 0) {
+          if (currentScale > 1) {
+            image.setAttribute("data-zoom", "in");
+          } else {
+            image.removeAttribute("data-zoom");
+          }
+          if (currentScale <= 1.05) resetTransform();
+        }
+      });
+
+      overlay.addEventListener("touchcancel", e => {
+        if (e.touches.length === 0) {
+          if (currentScale > 1) {
+            image.setAttribute("data-zoom", "in");
+          } else {
+            image.removeAttribute("data-zoom");
+          }
+          if (currentScale <= 1.05) resetTransform();
+        }
+      });
+
+      overlay.addEventListener(
+        "wheel",
+        e => {
+          e.preventDefault();
+          const oldScale = currentScale;
+          const delta = -e.deltaY * 0.001;
+          currentScale = Math.min(4, Math.max(1, currentScale * (1 + delta)));
+
+          if (currentScale <= 1.05) {
+            resetTransform();
+          } else {
+            image.setAttribute("data-zoom", "in");
+            // Zoom to cursor: adjust translate so the point under cursor stays fixed
+            const ox = overlay.clientWidth / 2;
+            const oy = overlay.clientHeight / 2;
+            translateX =
+              (e.clientX - ox) * (1 / currentScale - 1 / oldScale) + translateX;
+            translateY =
+              (e.clientY - oy) * (1 / currentScale - 1 / oldScale) + translateY;
+            clampTranslate();
+            applyTransform();
+          }
+        },
+        { passive: false }
+      );
+
+      let isMouseDown = false;
+      let mouseStartX = 0;
+      let mouseStartY = 0;
+
+      overlay.addEventListener("mousedown", e => {
+        if (e.button !== 0 || currentScale <= 1) return;
+        if (e.target.closest("button")) return;
+        isMouseDown = true;
+        mouseStartX = e.clientX;
+        mouseStartY = e.clientY;
+        panStartTranslateX = translateX;
+        panStartTranslateY = translateY;
+        image.setAttribute("data-zoom", "drag");
+        e.preventDefault();
+      });
+
+      function onMouseMove(e) {
+        if (!isMouseDown || !overlay) return;
+        translateX =
+          panStartTranslateX + (e.clientX - mouseStartX) / currentScale;
+        translateY =
+          panStartTranslateY + (e.clientY - mouseStartY) / currentScale;
+        clampTranslate();
+        applyTransform();
+      }
+
+      function onMouseUp() {
+        if (!isMouseDown) return;
+        isMouseDown = false;
+        if (currentScale > 1) {
+          image.setAttribute("data-zoom", "in");
+        } else {
+          image.removeAttribute("data-zoom");
+        }
+      }
+
+      document.addEventListener("mousemove", onMouseMove);
+      document.addEventListener("mouseup", onMouseUp);
+      removeDragListeners = () => {
+        document.removeEventListener("mousemove", onMouseMove);
+        document.removeEventListener("mouseup", onMouseUp);
+      };
+
+      document.body.appendChild(overlay);
+      document.documentElement.style.overflow = "hidden";
+      document.addEventListener("keydown", onKeyDown);
+      window.__closeLightbox = close;
+
+      requestAnimationFrame(() => overlay?.classList.add("opacity-100"));
+      closeButton.focus();
+    }
+
+    function close() {
+      if (!overlay) return;
+      const el = overlay;
+      overlay = null;
+      el.classList.add("pointer-events-none");
+      window.__closeLightbox = null;
+
+      document.removeEventListener("keydown", onKeyDown);
+      removeDragListeners?.();
+      removeDragListeners = null;
+      document.documentElement.style.overflow = "";
+      lastFocused?.focus();
+      lastFocused = null;
+
+      if (prefersReducedMotion()) {
+        el.remove();
+        return;
+      }
+      const remove = () => el.remove();
+      el.addEventListener("transitionend", remove, { once: true });
+      setTimeout(remove, 250); // fallback in case transitionend never fires
+      el.classList.remove("opacity-100");
+    }
+
+    function onKeyDown(e) {
+      if (e.key === "Escape") {
+        close();
+      } else if (e.key === "Tab") {
+        trapFocus(e);
+      }
+    }
+
+    // Keep keyboard focus inside the open dialog.
+    function trapFocus(e) {
+      if (!overlay) return;
+      const focusables = overlay.querySelectorAll(
+        'a[href], button, [tabindex]:not([tabindex="-1"])'
+      );
+      if (focusables.length === 0) return;
+      const first = focusables[0];
+      const last = focusables[focusables.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    }
+
+    function triggerFromEvent(e) {
+      const image = e.target.closest("img");
+      if (!image || !article.contains(image) || image.closest("a")) return null;
+      return image;
+    }
+
+    function activate(image) {
+      open(image.currentSrc || image.src, image.alt, image);
+    }
+
+    article.addEventListener("click", e => {
+      const image = triggerFromEvent(e);
+      if (!image) return;
+      e.preventDefault();
+      activate(image);
+    });
+
+    article.addEventListener("keydown", e => {
+      if (e.key !== "Enter" && e.key !== " " && e.key !== "Spacebar") return;
+      const image = triggerFromEvent(e);
+      if (!image) return;
+      e.preventDefault();
+      activate(image);
+    });
+  }
+  initLightbox();
+
+  if (!window.__lightboxSwapBound) {
+    window.__lightboxSwapBound = true;
+    document.addEventListener("astro:before-swap", () =>
+      window.__closeLightbox?.()
+    );
+  }
+
+  document.addEventListener("astro:after-swap", () =>
+    window.scrollTo({ left: 0, top: 0, behavior: "instant" })
+  );
+</script>
