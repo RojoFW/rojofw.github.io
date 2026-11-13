@@ -13,6 +13,10 @@ timezone: "America/Havana"
 
 # AdSelect: cuando los dólares del dashboard no llegan al bolsillo
 
+## 0. Agradecimientos 
+Primero que nada agredecer a mi colega [@daymar03](https://github.com/daymar03) por los aportes a esta investigación.
+
+
 ## 1. Contexto: por qué considero que AdSelect era una estafa
 
 En estos últimos días han aparecido plataformas que prometen hacernos «millonarios» con tareas sencillas. XenPaid ya había dejado a conocidos míos perdiendo el tiempo; después apareció AdSelect, con una propuesta demasiado familiar. En Cuba, donde la necesidad aprieta, una plataforma que promete dólares por mirar anuncios y traer amigos no necesita mucho para volverse popular.
